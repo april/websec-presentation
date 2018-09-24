@@ -1,0 +1,32 @@
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: #222;
+
+$mainFontSize: 2vw;
+$mainFont: 'Open Sans', 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Zilla Slab', 'Source Sans Pro', Helvetica, sans-serif;
+$monospaceFont: Menlo, Monaco, Consolas, 'Courier New', monospace;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: inherit;
+$headingFontWeight: normal;
+$linkColor: #2a76dd;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+$timeline2Height: 14vh;
+$timeline3Height: 18vh;
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+$heading5Size: .85em;
+$heading6Size: .7em;
+
+$blue: #00ffff;
+$green: #54ffbd;
+$purple: #6e008b;
+$red: #ff4f5e;
+$white: #fff;
+$yellow: #fff44f;

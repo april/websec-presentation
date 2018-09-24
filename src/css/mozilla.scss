@@ -1,0 +1,194 @@
+@import url("../../src/css/fonts.css");
+
+section.has-dark-background {
+  &, h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+  }
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal tt {
+  font-family: monospace;
+}
+
+.h1 { font-size: $heading1Size !important; }
+.h2 { font-size: $heading2Size !important; }
+.h3 { font-size: $heading3Size !important; }
+.h4 { font-size: $heading4Size !important; }
+.h5 { font-size: $heading5Size !important; font-weight: 500 !important; }
+.h6 { font-size: $heading6Size !important; font-weight: 600 !important; }
+
+.blue { color: $blue !important; }
+.green { color: $green !important; }
+.purple { color: $purple !important; }
+.red { color: $red !important; }
+.white { color: $white !important; }
+.yellow { color: $yellow !important; }
+
+header span {
+  background-color: $mainColor;
+  color: #fff;
+  font-family: $headingFont !important;
+  padding: 0 5px !important;
+}
+
+.zilla {
+  font-family: $headingFont !important;
+}
+
+/* various flex containers used in the presentation */
+.reveal agenda {
+  display: flex;
+  font-size: $heading2Size;
+  margin: 25vh auto auto auto;
+}
+
+.reveal agenda name {
+  display: flex;
+  font-family: $headingFont;
+  min-width: 35%;
+}
+
+.reveal agenda items {
+  display: flex;
+}
+
+.reveal agenda items ol {
+  font-family: $headingFont;
+  font-size: $heading5Size;
+}
+
+.reveal agenda items ol > li {
+  margin-bottom: 5vh;
+}
+
+.reveal agenda items ol li ul {
+  font-family: $mainFont;
+  font-size: $heading6Size;
+  /* list-style-type: none !important; */
+}
+
+.reveal quote {
+  color: $white;
+  display: block;
+  margin: auto;
+  width: 70vw;
+}
+
+.reveal quote p {
+  font-family: $headingFont;
+  font-size: $heading2Size;
+  text-indent: -.4em;
+}
+
+.reveal quote cite {
+  display: block;
+  font-family: $mainFont;
+}
+
+.reveal quote strong {
+  font-weight: 900;
+}
+
+.reveal quote cite author {
+  display: block;
+  font-size: $heading3Size;
+  font-weight: 300;
+}
+
+.reveal quote cite location {
+  display: block;
+  font-size: $heading5Size;
+}
+
+body footer {
+  position: absolute;
+  background: white;
+  border: solid 2px #78C2F4;
+  bottom: -1.25vh;
+  font-size: initial;
+  pointer-events: inherit;
+  transition: opacity .8s;
+  width: 100%;
+}
+
+body footer.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body footer timeline {
+  display: block;
+  font-family: $mainFont;
+  height: $timeline2Height;
+  width: 100%;
+}
+
+body footer timeline[data-timeline-height="3"] {
+  height: $timeline3Height;
+}
+
+body footer timeline tt {
+  font-family: $monospaceFont;
+  font-size: .85em;
+}
+
+.reveal section tt {
+  font-size: $heading3Size;
+}
+
+.reveal section.present[data-timeline] {
+  margin-bottom: $timeline2Height;
+}
+
+.reveal section.present[data-timeline-height="3"] {
+  margin-bottom: $timeline3Height;
+}
+
+.reveal section img, .reveal section video:not(.plain) {
+  border: 0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25)
+}
+
+.reveal section img.bordered {
+  border-color: solid 4px #54ffbd;
+}
+
+.reveal section img.center {
+  display: block;
+  margin: auto;
+}
+
+.reveal section div.center {
+  text-align: center;
+}
+
+.reveal section video {
+  margin: 15px 0;
+}
+
+.reveal .fragment.hideable:not(.current-fragment) {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
+
+.reveal pre {
+  width: 95%;
+}
+
+.reveal pre code {
+  max-height: 50vh;
+}
+
+.reveal iframe {
+  border: 3px black inset;
+}
+
+mark span.hljs-name, mark span.hljs-string, mark span.hljs-tag {
+  color: black;
+}

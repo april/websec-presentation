@@ -1,0 +1,2221 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/mozilla.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="src/css/dracula.css">
+
+    <!-- load the visualization css -->
+    <link rel="stylesheet" href="node_modules/vis/dist/vis.min.css">
+
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="center white h3" data-background-image="src/images/bg-title-slide.png">
+          <img style="display: block; height: 5vh; margin: 4vh 0 6vh;" data-src="src/images/moz-logo-bw-rgb.svg"></img>
+          <h2 class="white" style="margin-bottom: 0;">Mozilla Observatory</h2>
+          <div style="margin-bottom: 6vh;">25 years of web security standards</div>
+          <div class="h6" style="margin-bottom: 4vh;">2018.10.05</div>
+          <div class="h6">April King</div>
+          <div class="h6">Staff Security Engineer</div>
+        </section>
+
+        <section data-background-image="src/images/bg-blue-slash2.svg" data-background-position="left" data-background-size="auto 100%">
+          <agenda style="margin-top: 15vh">
+            <name>Agenda</name>
+            <items>
+              <ol>
+                <li>Teaching you everything
+                  <ul>
+                    <li class="fragment">I'm a liar</li>
+                    <li class="fragment">Start in 1994</li>
+                    <li class="fragment">End in a half-hour, after everyone has fled the room</li>
+                  </ul>
+                </li>
+                <li class="fragment">Test your knowledge</li>
+              </ol>
+            </items>
+          </agenda>
+        </section>
+
+        <section data-timeline="sop" data-timeline-height="3" data-timeline-range="3">
+          <h2>Same-origin Policy</h2>
+          <ul style="font-size: 1.4em; margin-bottom: 1em;">
+            <li>Sites can <span class="fragment highlight-current-red" data-fragment-index="2">execute code</span> from any origin, but they can only directly <span class="fragment highlight-current-red" data-fragment-index="3">read content</span> from the <span class="fragment highlight-current-red" data-fragment-index="4">same-origin</span>.</li>
+          </ul>
+
+          <ul class="fragment" data-fragment-index="2" style="font-size: 1.2em; margin-left: 2.5em;">
+            <li class="fragment highlight-current-red" data-fragment-index="2">Running JavaScript, rendering images and fonts, loading a frame</li>
+          </ul>
+
+          <ul class="fragment" data-fragment-index="3" style="font-size: 1.2em; margin-left: 2.5em;">         
+            <li class="fragment highlight-current-red" data-fragment-index="3">Reading the content of what they loaded</li>
+          </ul>
+
+          <div class="fragment center" style="font-size: 2em; margin-bottom: 2em; margin-top: 2em;" data-fragment-index="4">
+            <span class="fragment highlight-current-red" data-fragment-index="5" style="border: solid 1px black; margin-right: .3em; padding: .25em;">https://</span>
+            <span class="fragment highlight-current-red" data-fragment-index="6" style="border: solid 1px black; margin-right: .3em; padding: .25em;">www.mozilla.org</span>
+            <span class="fragment highlight-current-red" data-fragment-index="7" style="border: solid 1px black; margin-right: .3em; padding: .25em;">:443</span>
+          </div>
+
+          <div class="center fragment" style="font-size: 1.2em; top: -12em; position: relative;">
+            <video data-autoplay style="height: 40vh;">
+              <source data-src="src/images/pat-myself-back.mp4" type="video/mp4">
+            </video>
+          </div>
+        </section>
+
+        <section class="center" data-background-image="src/images/bg-what-kinda-clown.png">
+          <quote>
+            <p>
+              &ldquo;What kind of clown in this day and age doesn't understand that <strong class="yellow">TLS</strong> is the only good thing that we have?&rdquo;
+            </p>
+            <cite>
+              <author>James Mickens</author>
+              <location>Associate Professor,<br>Harvard University</location>
+            </cite>
+          </quote>
+        </section>
+
+        <section data-timeline="ssl2" data-transition="slide-in fade-out">
+          <h2>Secure Sockets Layer 2.0</h2>
+          <img class="center" style="height: 45vh;" data-src="src/images/netscape.jpg">
+          <p>
+          <ul>
+            <li>In 1995, Netscape released Netscape Navigator 1.1</li>
+            <li class="fragment">First browser with support for secure HTTP</code>
+          </ul>
+          </p>
+          <aside class="notes">
+            This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser
+          </aside>
+        </section>
+
+        <section data-timeline="pgp">
+          <h2>Pretty Good Privacy</h2>
+          <img class="center" style="height: 40vh;" data-src="src/images/pgp-book.jpg">
+          <p>
+          <ul>
+            <li>Allowed PC users to encrypt emails and files</li>
+            <li class="fragment">High degree of complexity</li>
+            <li class="fragment">Difficulty of key sharing</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="ssl2">
+          <h2>Secure Sockets Layer 2.0</h2>
+          <img class="center" style="height: 40vh;" data-src="src/images/https-netscape.jpg">
+          <p>
+          <ul>
+            <li>In 1995, Netscape released Netscape Navigator 1.1</li>
+            <li>First browser with support for secure HTTP</code>
+            <li><code>https://www.netscape.com/</code> 🔒</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            This was a pretty big deal, because it let you type something like this into your web browser
+          </aside>
+        </section>
+
+        <section data-timeline="ssl3,pct1">
+          <h2>Secure Sockets Layer 3.0 &amp;</h2>
+          <h2>Private Communications Technology 1.0</h2>
+          <div class="center"><img class="plain" style="height: 40vh;" data-src="src/images/netscape-and-ie.png"></div>
+          <p>
+          <ul>
+            <li>Fixed a lot of security shortfalls in SSL 2.0</li>
+            <li class="fragment">Microsoft released SSL 2.0 compatible PCT, only supported by Internet Explorer</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="tls10" data-timeline-range="8" data-transition="slide-in fade-out">
+          <h2>Transport Layer Security 1.0</h2>
+          <div class="center"><img style="height: 40vh;" data-src="src/images/unicorn-tls10.jpg"></div>
+          <p>
+            <ul>
+              <li>Basically the same thing as <strong>SSL 3.0</strong></li>
+              <li><tt>ProtocolVersion</tt> is <strong>{ 3 , 1 }</strong></li>
+              <li class="fragment" data-fragment-index="2">Netscape and Microsoft IETF standardization</li>
+              <li class="fragment" data-fragment-index="3">Name changed to <u>Transport Layer Security</u> as part of negotiations</li>
+            </ul>
+          </p>
+          <div class="center fragment hideable" data-fragment-index="1">
+            <video data-autoplay style="height: 40vh; position: relative; top: -18.875em;">
+              <source data-src="src/images/im-so-confused.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+<!--         <section data-timeline="tls10" data-timeline-range="8" data-transition="fade-in slide-out">
+          <h2>Transport Layer Security 1.0</h2>
+          <div class="center">
+            <video data-autoplay style="height: 40vh;">
+              <source data-src="src/images/im-so-confused.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p>
+            <ul>
+              <li>Basically the same thing as <strong>SSL 3.0</strong></li>
+              <li><tt>ProtocolVersion</tt> is <strong>3.1</strong></li>
+              <li class="fragment">Netscape and Microsoft IETF standardization</li>
+              <li class="fragment">Name changed to <u>Transport Layer Security</u> as part of negotiations</li>
+            </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section> -->
+
+        <section data-timeline="tls11">
+          <h2>Transport Layer Security 1.1</h2>
+          <div class="center"><img style="height: 40vh;" data-src="src/images/unicorn-tls11.jpg"></div>
+          <p>
+          <ul>
+            <li>Fixes a bunch of vulnerabilities related to certain cipher suites</li>
+            <li>A pretty minor update</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            Cipher block chaining mode, later exploited in attacks such as BEAST
+          </aside>
+        </section>
+
+        <section data-timeline="tls12" data-timeline-range="3">
+          <h2>Transport Layer Security 1.2</h2>
+          <div class="center"><img style="height: 40vh;" data-src="src/images/unicorn-tls12.jpg"></div>
+          <p>
+          <ul>
+            <li>Further cleanup and bug fixes</li>
+            <li>Added a lot of flexability via TLS Extensions</li>
+            <li>Added support for AES (Advanced Encryption Standard) cipher and <tt><u>AEADs</u></tt></li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="tls12,aead" data-timeline-range="3">
+          <h2>Authenticated Data with Associated Data (AEAD)</h2>
+          <div class="center">
+            <ul>
+              <li>Combining a cipher, block mode, and message authentication code (MACs) was <em>really hard</em></li>
+            </ul>
+            <img class="fragment" style="max-height: 35vh;" data-src="src/images/aead-food.jpg">
+          </div>
+          <p>
+          <ul>
+            <li class="fragment"><tt>AEADs</tt> encompass all three</li>
+            <li class="fragment">Most common are <tt>AES-GCM</tt> (AES in Galois/Counter mode) and <tt>ChaCha20-Poly1305</tt></li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="tls12,aead" data-timeline-range="3">
+          <h2>Transport Layer Security</h2>
+          <div class="center"><img style="height: 40vh;" data-src="src/images/unicorn-tls12.jpg"></div>
+          <p>
+          <ul>
+            <li>Overall, individual differences from SSL 3.0 to TLS 1.2 are minor</li>
+            <li>Fix a pile of bugs and add a lot of flexibility</li>
+            <li>Considerably clean up the specification</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section class="center" data-background-image="src/images/bg-broken-lock.png">
+          <quote>
+            <p>
+              &ldquo;Remember, everything less than TLS 1.2 with an AEAD mode is <strong class="yellow">cryptographically broken</strong>.&rdquo;
+            </p>
+            <cite>
+              <author>Adam Langley</author>
+              <location>Senior Staff Software Engineer,<br>Google</location>
+            </cite>
+          </quote>
+        </section>
+
+        <section data-timeline="tls13" data-timeline-range="3">
+          <h2>Transport Layer Security 1.3</h2>
+          <div class="center"><img style="height: 40vh;" data-src="src/images/unicorn-tls13.jpg"></div>
+          <p>
+          <ul>
+            <li>Further removed a lot of cruft (MD5, RC4, SSL fallbacks, weak elliptic curves)</li>
+            <li>Requires AEADs and forward secret handshakes</li>
+            <li>Much faster handshakes, with fewer round trips</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            From 6 trips to 4 trips
+          </aside>
+        </section>
+
+        <section data-timeline="tls12" data-transition="slide-in fade-out" data-timeline-range="3">
+          <h2>Transport Layer Security 1.2 handshake</h2>
+          <div class="center"><img style="height: 60vh;" data-src="src/images/cloudflare-tls12-handshake.png"></div>
+          <aside class="notes">
+            2-RTT to 1-RTT
+          </aside>
+        </section>
+
+        <section data-timeline="tls13" data-transition="fade-in fade-out" data-timeline-range="3">
+          <h2>Transport Layer Security 1.3 handshake</h2>
+          <div class="center"><img style="height: 60vh;" data-src="src/images/cloudflare-tls13-handshake.png"></div>
+          <aside class="notes">
+            2-RTT to 1-RTT
+          </aside>
+        </section>
+
+        <section data-timeline="tls13" data-transition="fade-in slide-out" data-timeline-range="3">
+          <h2>Transport Layer Security 1.3 handshake resumption</h2>
+          <div class="center"><img style="height: 60vh;" data-src="src/images/cloudflare-tls13-handshake-0rtt.png"></div>
+          <aside class="notes">
+            Zero roundtrips!!
+          </aside>
+        </section>
+
+        <section data-timeline="tls13" data-timeline-range="3">
+          <h2>Transport Layer Security 1.3</h2>
+          <div class="center">
+            <video data-autoplay style="height: 40vh;">
+              <source data-src="src/images/high-five.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p>
+            <ul>
+              <li>Available in Firefox 63, Chrome 70</li>
+            </ul>
+          </p>
+          <aside class="notes">
+            From 6 trips to 4 trips
+          </aside>
+        </section>
+
+        <section class="center" data-background-image="src/images/bg-broken-lock.png">
+          <quote>
+            <p>
+              &ldquo;There's a <strong class="yellow">big difference</strong> between making a simple product and making a product simple.&rdquo;
+            </p>
+            <cite>
+              <author>Des Traynor</author>
+              <location>Co-founder of Intercom</location>
+            </cite>
+          </quote>
+        </section>
+
+        <section data-timeline="sni">
+          <h2>Subject Name Indication</h2>
+          <div class="center"><img style="height: 40vh;" data-src="src/images/sni.png"></div>
+          <p>
+          <ul>
+            <li>Early versions of SSL and TLS only supported one server per IP address</li>
+            <li>Didn't match up well with the realities of web hosting</li>
+            <li>Let clients tell servers which host they wanted to connect to</li>
+            <li>Downsides of letting eavesdroppers know which domain you're connecting to</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            HTTP/1.1 has the `Host` field, but TLS sits below HTTP
+          </aside>
+        </section>
+
+        <section data-timeline="hsts">
+          <h2>HTTP Strict Transport Security</h2>
+          <div class="center">
+            <video class="plain" loop data-autoplay style="height: 40vh;">
+              <source data-src="src/images/badssl-cursor.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p>
+          <ul>
+            <li class="fragment">Tells your browser that you want to go to <tt>http://badssl.com/</tt></li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-transition="slide-in none-out">
+          <h2>HTTP Strict Transport Security</h2>
+          <div class="center">
+            <img class="plain" style="height: 75vh;" data-src="src/images/hsts-dialog-1.svg">
+          </div>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <h2>HTTP Strict Transport Security</h2>
+          <div class="center">
+            <img class="plain" style="height: 75vh;" data-src="src/images/hsts-dialog-2.svg">
+          </div>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <h2>HTTP Strict Transport Security</h2>
+          <div class="center">
+            <img class="plain" style="height: 75vh;" data-src="src/images/hsts-dialog-3.svg">
+          </div>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <h2>HTTP Strict Transport Security</h2>
+          <div class="center">
+            <img class="plain" style="height: 75vh;" data-src="src/images/hsts-dialog-4.svg">
+          </div>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <h2>HTTP Strict Transport Security</h2>
+          <div class="center">
+            <img class="plain" style="height: 75vh;" data-src="src/images/hsts-dialog-5.svg">
+          </div>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <h2>HTTP Strict Transport Security</h2>
+          <div class="center">
+            <img class="plain" style="height: 75vh;" data-src="src/images/hsts-dialog-6.svg">
+          </div>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <h2>HTTP Strict Transport Security</h2>
+          <div class="center">
+            <img class="plain" style="height: 75vh;" data-src="src/images/hsts-dialog-7.svg">
+          </div>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <h2>HTTP Strict Transport Security</h2>
+          <div class="center">
+            <img class="plain" style="height: 75vh;" data-src="src/images/hsts-dialog-8.svg">
+          </div>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <h2>HTTP Strict Transport Security</h2>
+          <div class="center">
+            <img class="plain" style="height: 75vh;" data-src="src/images/hsts-dialog-9.svg">
+          </div>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <h2>HTTP Strict Transport Security</h2>
+          <div class="center">
+            <img class="plain" style="height: 75vh;" data-src="src/images/hsts-dialog-10.svg">
+          </div>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="hsts">
+          <h2>HTTP Strict Transport Security</h2>
+          <div class="center">
+            <video class="plain" loop data-autoplay style="height: 40vh;">
+              <source data-src="src/images/badssl-cursor.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p>
+          <ul>
+            <li>Tells browsers to always visit site over HTTPS for a period</li>
+            <li class="fragment">Doesn't solve first use problem</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="hstspreloading">
+          <h2>HSTS Preloading</h2>
+          <div class="center"><img style="height: 30vh;" data-src="src/images/hstspreload.png"></div>
+          <p>
+          <ul>
+            <li>What if browsers came bundled with a giant list of sites that were only HTTPS?</li>
+          </ul>
+          <pre style="font-size: .9em;"><code class="http" data-trim data-noescape>Strict-Transport-Security: max-age=63072000; includeSubDomains; <mark>preload</mark></code></pre>
+          <ul>
+            <li>Applies to all subdomains, supported by every browser</li>
+            <li>Takes a very long time to get off</li>
+            <li>GIANT LIST OF SITES</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="hpkp" data-timeline-range="3">
+          <h2>HTTP Public Key Pinning (HPKP)</h2>
+          <div class="center">
+          <video class="center fragment" data-autoplay data-fragment-index="4" style="height: 40vh;">
+            <source data-src="src/images/pin-tail-donkey.mp4" type="video/mp4">
+          </video>
+          </div>
+          <p>
+          <ul>
+            <li>Certificate authorities sometimes issue certs that they shouldn't</li>
+            <li class="fragment" data-fragment-index="1">A way to pin sites to specific root CAs, intermediate CAs, or public keys
+              <ul>
+                <li class="fragment" data-fragment-index="2">Maybe 100 sites will use this</li>
+                <li class="fragment" data-fragment-index="3">It's super complicated and easy to screw up</li>
+              </ul>
+            </li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="certificatetransparency">
+          <h2>Certificate Transparency</h2>
+          <div class="center"><img style="max-height: 40vh;" data-src="src/images/certificate-transparency.png"></div>
+          <p>
+          <ul>
+            <li>Append-only lists of certificates issued by certificate authorities
+              <ul>
+                <li>Check for issued certs that you didn't request</li>
+                <li>Check to see if certs encountered in the wild aren't in the logs</li>
+              </ul>
+            </li>
+            <li>Required for some types of certs already, eventually all certs</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            Kind of like blockchain
+          </aside>
+        </section>
+
+        <section>
+          <h2>Digital Certificates</h2>
+          <div class="center" style="height: 40vh;">
+            <video class="fragment hideable" data-fragment-index="2" data-autoplay style="height: 100%;">
+              <source data-src="src/images/too-much-money.mp4" type="video/mp4">
+            </video>
+            <img class="fragment hideable" data-fragment-index="3" style="height: 100%;" data-src="src/images/hates-installing-certificates.jpg">
+          </div>
+          <p>
+          <ul>
+            <li>Digital certificates are like a driver's license for a website</li>
+            <li class="fragment" data-fragment-index="1">They are required to setup secure websites</li>
+            <li class="fragment" data-fragment-index="2">The entities selling them want to make money</li>
+            <li class="fragment" data-fragment-index="3">And so digital certificates were expensive and complicated</span></li>
+          </ul>
+          </p>
+          <aside class="notes">
+            But prior to the mid-2010s
+          </aside>
+        </section>
+<!-- 
+        <section data-timeline="letsencrypt" data-timeline-range="3">
+          <img class="plain" style="height: 10vh; margin-top: 0;" data-src="src/images/letsencrypt-logo.svg">
+          <p>
+          <ul>
+            <li>Certificates are required to setup secure websites</li>
+            <li>The entities selling them want to make money</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section> -->
+
+        <section data-timeline="letsencrypt" data-timeline-range="3">
+          <img class="plain" style="height: 10vh; margin-top: 0;" data-src="src/images/letsencrypt-logo.svg">
+          <div class="center" style="height: 30vh;">
+            <img class="fragment hideable" data-fragment-index="1" style="max-height: 100%;" data-src="src/images/letsencrypt-free.png">
+            <img class="fragment hideable" data-fragment-index="2" style="max-height: 100%;" data-src="src/images/letsencrypt-automated.png">
+            <img class="fragment hideable" data-fragment-index="3" style="max-height: 100%;" data-src="src/images/letsencrypt-transparent.png">
+            <img class="fragment hideable" data-fragment-index="4" style="max-height: 100%;" data-src="src/images/letsencrypt-opensource.png">
+          </div>
+          <p>
+          <ul style="color: #2c3c69; font-family: Gibson, Arial, Helvetica, sans-serif; font-size: 1.5em; font-weight: 600;">
+            <li class="fragment" data-fragment-index="1">Free</li>
+            <li class="fragment" data-fragment-index="2">Automated</li>
+            <li class="fragment" data-fragment-index="3">Transparent</li>
+            <li class="fragment" data-fragment-index="4">Open Source</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="letsencrypt" data-timeline-range="3">
+          <img class="plain" style="height: 10vh; margin-top: 0;" data-src="src/images/letsencrypt-logo.svg">
+          <div class="center"><img class="plain" style="max-height: 45vh;" data-src="src/images/https-usage.png"></div>
+          <p>
+          <ul>
+            <li>Here&rsquo;s where I show off a sweet chart about HTTPS usage<br><span style="color: #aaaaaa;">(note to self: rewrite to something more professional before presentation)</span></li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+
+        <section class="center" data-background-image="src/images/bg-title-slide.png">
+          <div class="center"><span class="h2 white">This is a great time to take a <strong class="yellow">&ldquo;short bathroom break&rdquo;</strong>.</span></div>
+        </section>        
+
+        <section class="center" data-background-image="src/images/bg-cookies.png">
+          <quote>
+            <p>
+              &ldquo;Early bird gets the worm. But <strong class="yellow">cookie</strong> taste better than worm. So me sleep in.&rdquo;
+            </p>
+            <cite>
+              <author>Cookie Monster</author>
+              <location>Muppet,<br>Sesame Street</location>
+            </cite>
+          </quote>
+        </section>
+
+        <section data-timeline="securecookies">
+          <h2>Secure Cookies</h2>
+          <pre style="font-size: 1em;"><code class="http" data-trim data-noescape>Set-Cookie: SESSIONID=38afesc00c1e7a8; Domain=e-cookies.com</code></pre>
+          <ul>
+            <li>Browser sends the <tt>SESSIONID</tt> cookie every time you visit e-cookies.com, even over <strong>HTTP</strong></li>
+          </ul>
+          <div class="center">
+            <video class="plain" loop data-autoplay style="height: 20vh;">
+              <source data-src="src/images/badssl-cursor.mp4" type="video/mp4">
+            </video>
+          </div>
+          <ul>
+            <li>This is very bad</li>
+          </ul>
+          <pre style="font-size: 1em;"><code class="http" data-trim data-noescape>Set-Cookie: SESSIONID=38afesc00c1e7a8; Domain=e-cookies.com; <mark>Secure</mark></code></pre>
+          <ul>
+            <li>The <tt>Secure</tt> flag tells your browser to not do the bad thing</li>
+            <li>HTTP Strict Transport Security (HSTS) helps mitigate</li>
+            <li>You should still use HTTPS and <tt>Secure</tt> for all cookies</li>
+          </ul>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="httponlycookies" data-auto-fragment>
+          <h2>HttpOnly Cookies</h2>
+          <p>
+          <ul>
+            <li class="fragment" data-fragment-index="1">Browser makers understood that JavaScript came from all sorts of unscrupulous places</li>
+          </ul>
+          <div class="center fragment" data-fragment-index="1">
+            <video data-autoplay style="height: 30vh;">
+              <source data-src="src/images/head-of-digital-strategy.mp4" type="video/mp4">
+            </video>
+          </div>
+          <ul>
+            <li class="fragment" data-fragment-index="2">Prevents JavaScript code from accessing sensitive cookies</li>
+          </ul>
+          <pre class="fragment" style="font-size: 1em;" data-fragment-index="2"><code class="http" data-trim data-noescape>Set-Cookie: SESSIONID=38afesc00c1e7a8; Secure; <mark>HttpOnly</mark></code></pre>
+          <ul>
+            <li class="fragment" data-fragment-index="3"><tt>HttpOnly</tt> flag can help protect these cookies, and you should use it</li>
+            <li class="fragment" data-fragment-index="4">Not nearly as important as preventing untrusted JavaScript from running</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="samesitecookies">
+          <h2>SameSite Cookies</h2>
+          <ul>
+            <li>Super easy</li>
+            <li class="fragment">Save a ton of time</li>
+            <li class="fragment">You should do it</li>
+            <li class="fragment">But how????? And why????</li>
+          </ul>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="samesitecookies">
+          <h2>Cross-site request forgeries (CSRF)</h2>
+          <ul>
+            <li>Here is what I know</li>
+            <li>There are three things people want in life</li>
+          </ul>
+          <div class="center fragment">
+            <video data-autoplay style="height: 45vh;">
+              <source data-src="src/images/puppies.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="center fragment">
+            <video data-autoplay style="height: 45vh; position: relative; left: -5vh; top: -44vh;">
+              <source data-src="src/images/kitties.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="center fragment">
+            <video data-autoplay style="height: 45vh; position: relative; left: 5vh; top: -88vh;">
+              <source data-src="src/images/puppieskitties.mp4" type="video/mp4">
+            </video>
+          </div>
+          <aside class="notes">
+            Here is what I know. There are three things people want in life. Pictures of puppies. Pictures of kitties. And pictures of puppies playing with kitties.
+          </aside>
+        </section>
+
+        <section data-timeline="samesitecookies">
+          <h2>Cross-site request forgeries (CSRF)</h2>
+          <p>
+          <ul>
+            <li>To do this, browsers must support <tt class="red"><strong>&lt;img&gt;</strong></tt> and <tt class="red"><strong>&lt;video&gt;</strong></tt> tags</li>
+          </ul>
+          </p>
+          <!-- <img src="https://bnpparibas/api/transfer?to=7190917072&amount=500"> -->
+
+          <pre class="fragment" style="font-size: .9em;"><code class="html" data-trim>&lt;img src=&quot;https://mabanque.bnpparibas/api/transfer?to=719091707&amp;amount=5000&quot;&gt;</code></pre>
+
+          <ul>
+            <li class="fragment">
+              <span style="display: inline-block; font-size: 2em; transform: rotate(00deg); transform-origin: center; vertical-align: middle;">🤔</span>
+              <span style="display: inline-block; font-size: 3em; transform: rotate(45deg); transform-origin: center; vertical-align: middle;">🤔</span>
+              <span style="display: inline-block; font-size: 4em; transform: rotate(90deg); transform-origin: center; vertical-align: middle;">🤔</span>
+              <span style="display: inline-block; font-size: 3em; transform: rotate(135deg); transform-origin: center; vertical-align: middle;">🤔</span>
+              <span style="display: inline-block; font-size: 2em; transform: rotate(180deg); transform-origin: center; vertical-align: middle;">🤔</span>
+              <span style="display: inline-block; font-size: 3em; transform: rotate(225deg); transform-origin: center; vertical-align: middle;">🤔</span>
+              <span style="display: inline-block; font-size: 4em; transform: rotate(270deg); transform-origin: center; vertical-align: middle;">🤔</span>
+              <span style="display: inline-block; font-size: 3em; transform: rotate(315deg); transform-origin: center; vertical-align: middle;">🤔</span>
+              <span style="display: inline-block; font-size: 2em; transform: rotate(00deg); transform-origin: center; vertical-align: middle;">🤔</span>
+              <span style="display: inline-block; font-size: 3em; transform: rotate(45deg); transform-origin: center; vertical-align: middle;">🤔</span>
+              <span style="display: inline-block; font-size: 4em; transform: rotate(90deg); transform-origin: center; vertical-align: middle;">🤔</span>
+              <span style="display: inline-block; font-size: 3em; transform: rotate(135deg); transform-origin: center; vertical-align: middle;">🤔</span>
+              <span style="display: inline-block; font-size: 2em; transform: rotate(180deg); transform-origin: center; vertical-align: middle;">🤔</span>
+            </li>
+            <li class="fragment">Browsers: <span style="font-size: 3em; vertical-align: middle;">👍</span></li>
+            <li class="fragment">How do you tell an authentic request (<em>with session cookies</em>) from a forgery (<em>with session cookies</em>)?</li>
+          </ul>
+
+
+          <aside class="notes">
+            Here is what I know. There are three things people want in life. Pictures of puppies. Pictures of kitties. And pictures of puppies playing with kitties.
+          </aside>
+        </section>
+
+        <section data-timeline="samesitecookies">
+          <h2>Cross-site request forgeries (CSRF)</h2>
+          <p>
+          <ul>
+            <li>Synchronizer tokens</li>
+          </ul>
+          </p>
+          <!-- <input type="hidden" name="anticsrftoken" value="XQGwbxfChfoEv4nFJQEHVeDsd" /> -->
+
+          <pre class="fragment" style="font-size: .9em;"><code class="html" data-trim>&lt;input type=&quot;hidden&quot; name=&quot;anticsrftoken&quot; value=&quot;XQGwbxfChfoEv4nFJQEHVeDsd&quot;&gt;</code></pre>
+
+          <p>
+          <ul>
+            <li style="list-style-type: none;">
+              <ul>
+                <li class="fragment">These are complicated and messy</li>
+                <li class="fragment">They need to be unique and unpredictable</li>
+                <li class="fragment">Can sometimes cause problems with multiple tabs and erratic user flows</li>
+              </ul>
+            </li>
+          </ul>
+          </p>
+
+          <p>
+          <ul>
+            <li class="fragment">Cookie-to-header tokens</li>
+          </ul>
+          </p>
+          <!-- Set-Cookie: anti-csrf-token=XQGwbxfChfoEv4nFJQEHVeDsd -->
+
+          <pre class="fragment" style="font-size: .9em;"><code class="http" data-trim data-noescape>Set-Cookie: anti-csrf-token=XQGwbxfChfoEv4nFJQEHVeDsd<s>; HttpOnly</s></code></pre>
+          <pre class="fragment" style="font-size: .9em;"><code class="http" data-trim>X-Anti-CSRF-Token: XQGwbxfChfoEv4nFJQEHVesd</code></pre>
+
+          <p>
+          <ul>
+            <li style="list-style-type: none;">
+              <ul>
+                <li class="fragment">Protected by same-origin policy</li>
+                <li class="fragment">Must be predictable, stable across entire session</li>
+                <li class="fragment">Require JavaScript to be enabled</li>
+              </ul>
+            </li>
+          </ul>
+          </p>
+
+          <aside class="notes">
+            Here is what I know. There are three things people want in life. Pictures of puppies. Pictures of kitties. And pictures of puppies playing with kitties.
+          </aside>
+        </section>
+
+        <section data-timeline="samesitecookies">
+          <h2>SameSite Cookies</h2>
+          <ul>
+            <li>Previous methods usually required complicated frameworks</li>
+          </ul>
+
+          <pre class="fragment" style="font-size: .9em;" data-fragment-index="1"><code class="http" data-trim data-noescape>Set-Cookie: SESSIONID=XQGwbxfChfoEv4nFJQEHVeDsd; Secure; HttpOnly; <mark>SameSite</mark></code></pre>
+
+          <p>
+          <ul>
+            <li class="fragment" data-fragment-index="2"><tt>SameSite</tt> tells browsers to only ever send the cookie when you're on a site</li>
+            <li class="fragment" data-fragment-index="3"><tt>SameSite=Lax</tt> will let browsers send cookies on top-level navigations
+              <ul>
+                <li>Protects unsafe methods (like POST)</li>
+              </ul>
+            </li>
+          </ul>
+          </p>
+
+          <p class="fragment" data-fragment-index="4">
+          <img class="center" style="height: 25vh;"" data-src="src/images/samesitecookie-support.png">
+          <ul class="fragment" data-fragment-index="4">
+            <li>Use in conjunction with other anti-CSRF methods for now</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="cookieprefixes" data-timeline-range="3">
+          <h2>Cookie Prefixes</h2>
+          <p>
+          <ul>
+            <li>Quite a number of attacks have come from leveraging an insecure site to attack a secure one</li>
+            <li class="fragment">Sites can set cookies on any parent domain or any subdomain</li>
+          </ul>
+          <a href="http://poorlycodedwebsite.pleasedontfindthis.mybosswillfireme.test.bank.com">
+          <div style="display:inline-block; height: 4em; margin-left: 2em; margin-top: 1em; vertical-align: top;">
+            <span class="fragment">http://poorlycodedwebsite</span>
+          </div>
+          <div style="display: inline-block; margin-top: 2em; margin-bottom: 1em;6">
+            <span class="fragment">.pleasedontfindthis</span><br>
+            <span class="fragment">.mybosswillfireme</span><br>
+            <span class="fragment">.test</span><br>
+            <span class="fragment">.bank.com</span>
+          </div>
+          </a>
+          <pre class="fragment" style="font-size: .9em;"><code class="http" data-trim data-noescape>Set-Cookie: nickname=&lt;script&gt;doEvil()&lt;/script&gt;; <mark>Domain=bank.com</mark></code></pre>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="cookieprefixes" data-timeline-range="3">
+          <h2>Cookie Prefixes</h2>
+          <p style="margin-top: 1em;">
+            <pre style="font-size: .9em; line-height: 1.5em;"><code class="http" data-trim data-noescape>Set-Cookie: <mark>__Secure-</mark>nickname=April; Secure; Domain=bank.com</code></pre>
+
+            <ul style="margin-left: 4em;">
+              <li>Prevent cookie from being overwritten by insecure origins</li>
+            </ul>
+          </p>
+
+          <p style="margin-top: 3em;">
+            <pre style="font-size: .9em; line-height: 1.5em;"><code class="http" data-trim data-noescape>Set-Cookie: <mark>__Host-</mark>nickname=April; Secure; Domain=bank.com; Path=/</code></pre>
+
+            <ul style="margin-left: 4em;">
+              <li>Prevent cookie from being overwritten by either insecure origins or other systems.</li>
+            </ul>
+          </p>
+
+          <aside class="notes">
+            It's a simple as renaming you cookie, and as we all know, naming things is the easiest thing in computer science.
+          </aside>
+        </section>
+
+        <section class="center" data-background-image="src/images/bg-cookies.png">
+          <quote>
+            <p>
+              &ldquo;The use of <em>z, y, <strong class="yellow">x</strong></em> &hellip; to represent unknowns is due to René Descartes, in his <em>La géométrie</em> (1637).&rdquo;
+            </p>
+            <cite>
+              <author>Florian Cajori</author>
+              <location>A History of Mathematical Notations (1928)</location>
+            </cite>
+          </quote>
+        </section>
+
+        <section data-timeline="xxssp,xfo,xcto"  data-timeline-range="3" data-timeline-height="3" data-auto-fragment>
+          <h1>X marks the spot</h1>
+          <img class="center plain fragment fade-in" data-fragment-index="1" style="height: 30vh; transition: all 20s" data-src="src/images/internet-explorer-8.png">
+          <p>
+          <ul>
+            <li class="fragment" data-fragment-index="1">Internet Explorer 8 introduced a trio of security headers</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="xfo" data-timeline-range="3" data-timeline-height="3" >
+          <h2>X-Frame-Options</h2>
+          <p>
+          <ul>
+            <li>Tells browsers whether or not your site could be framed or iframed
+            <ul>
+              <li style="padding-top: .5em;"><tt>X-Frame-Options: DENY</tt></li>
+              <li style="padding-top: .5em;"><tt>X-Frame-Options: SAMEORIGIN</tt></li>
+              <li><tt>X-Frame-Options: ALLOW-FROM https://mozilla.org/</tt><sup style="font-size: 1.5em;">†</sup></li>
+            </ul>
+            </li>
+          </ul>
+          </p>
+          <p style="margin-top: 4em;"><sup style="font-size: 1.5em;">†</sup> Poor browser support</p>
+        </section>
+
+        <section data-transition="slide-in fade-out" data-transition-speed="slow">
+          <h2>Clickjacking</h2>
+
+          <iframe src="src/html/delete-my-presentation.html" style="border: solid 1px black; height: 60vh; margin-left: 12.5%; margin-top: 5vh; width: 75%"></iframe>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-transition="fade">
+          <h2>Clickjacking</h2>
+
+          <iframe id="please-click-me" src="src/html/please-click-me.html" style="height: 70vh; width: 100%"></iframe>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-background-color="black" data-transition-speed="fast"></section>
+
+        <section data-timeline="xfo" data-timeline-range="3" data-timeline-height="3">
+          <h2>X-Frame-Options</h2>
+          <img class="center" style="max-height: 45vh;" data-src="src/images/free-kittens.jpg">
+          <p>
+          <ul>
+            <li>Now deprecated by other, more flexible standards</li>
+            <li>Can still use if you have old clients and mostly need <tt>DENY</tt></li>
+          </ul>
+          </p>
+        </section>
+
+        <section data-timeline="xxssp" data-timeline-range="3" data-timeline-height="3">
+          <h2>X-XSS-Protection</h2>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="xxssp" data-timeline-range="3" data-timeline-height="3" data-auto-fragment>
+          <h2>Cross-site scripting (XSS)</h2>
+          <p class="fragment" data-fragment-index="1">
+            Imagine a URL like this...
+          </p>
+          <pre class="fragment hideable" data-fragment-index="1" style="font-size: .9em;"><code class="html" data-trim>https://passwordvault.com?pw=%22%3Eapril%3Cscript%3EdoEvil();%3C/script%3E</script></code></pre>
+          <pre class="fragment hideable" data-fragment-index="2" style="font-size: .9em;"><code class="html" data-trim>https://passwordvault.com?pw="&gt;april&lt;script&gt;doEvil();&lt;/script&gt;</script></code></pre>
+          <pre class="fragment hideable" data-fragment-index="3" style="font-size: .9em;"><code class="html" data-trim>https://passwordvault.com?pw="&gt;april&lt;script&gt;doEvil();&lt;/script&gt;</script></code></pre>
+          <p class="fragment" data-fragment-index="3">
+            Now what if you took that link, and sent it in an email to someone <strong>super</strong> gullible?
+          </p>
+          <img class="center fragment" data-fragment-index="3" style="height: 45vh;" data-src="src/images/your-number-one-fan.png">
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="xxssp" data-timeline-range="3" data-timeline-height="3">
+          <h2>Cross-site scripting (XSS) <span class="red fragment" data-fragment-index="3">(Reflected)</span></h2>
+
+          <p>
+            I hope you're still remembering this URL&hellip;
+          </p>
+          <pre style="font-size: .9em;"><code class="html" data-trim>https://passwordvault.com?pw="&gt;april&lt;script&gt;doEvil();&lt;/script&gt;</script></code></pre>
+          <p class="fragment" data-fragment-index="1">
+            Because it's going into this code:
+          </p>
+          <!-- <input id="search" value="<?php echo $UNESCAPED_GET["pw"] ?> "> -->
+          <pre class="fragment" data-fragment-index="1" style="font-size: 1em;"><code class="php" data-trim>
+            &lt;input id=&quot;search&quot;
+                   value=&quot;&lt;?pseudocode echo $_GET[&quot;pw&quot;] ?&gt;&quot;
+            &gt;
+          </code></pre>
+
+          <p class="fragment" data-fragment-index="2">
+            And what your browser will see (and execute) is this:
+<!--           <input id="pw"
+                 value="april"><script>doEvil();</script> -->
+          </p>
+          <pre class="fragment" data-fragment-index="2" style="font-size: 1em;"><code class="html" data-trim data-noescape>
+&lt;input id=&quot;pw&quot;
+       value=&quot;april&quot;&gt;<mark>&lt;script&gt;doEvil();&lt;/script&gt;</mark>&quot;&gt;
+          </code></pre>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="xxssp" data-timeline-range="3" data-timeline-height="3">
+          <h2>Cross-site scripting (XSS) <span class="red">(Stored)</span></h2>
+
+          <p style="margin-top: 5vh;">Please post nice things!<span style="float: right; text-align: right;">tabs-forever-forum.com</span></p>
+          <textarea id="storedxss" style="border: solid 1px black; font-size: 1.5em; height: 40vh; width: 100%;"></textarea>
+          <div style="margin-top: 10px; text-align: right;"><button onclick="Reveal.navigateRight();" style="background-color: #f0f0f0; border: solid 1px #dadada; font-size: 4vh; padding: 1vh 4vw;">Submit</button></div>
+          <aside class="notes">
+            spaces are better than tabs&lt;script&gt;alert('spaces rule!!!');&lt;/script&gt;
+          </aside>
+        </section>
+
+        <section data-timeline="xxssp" data-timeline-range="3" data-timeline-height="3" data-state="storedxss">
+          <h2>Cross-site scripting (XSS) <span class="red">(Stored)</span></h2>
+
+          <p style="margin-top: 5vh;text-align: right;">tabs-forever-forum.com</p>
+          <p id="storedxsstext" style="border: solid 1px black; font-size: 1.5em; height: 40vh; padding: 1em;"></p>
+          <aside class="notes">
+            &lt;script&gt;alert('spaces rule!!!');&lt;/script&gt;
+          </aside>
+        </section>
+
+        <section data-timeline="xxssp" data-timeline-range="3" data-timeline-height="3">
+          <h2>X-XSS-Protection</h2>
+          <p>
+          <ul>
+            <li>Cross-site scripting attacks are the most common attack</li>
+            <li>Can be extremely damaging</li>
+          </ul>
+          </p>
+          <p>
+            <pre class="fragment" style="font-size: 1.25em; margin-top: 1em;" data-fragment-index="1"><code class="http" data-trim data-noescape>X-XSS-Protection: 1; block</code></pre>
+          </p>
+          <ul>
+            <li class="fragment" data-fragment-index="1"><tt>X-XSS-Protection</tt> detects <strong class="red">reflected</strong> cross-site scripting attacks</li>
+            <li class="fragment" data-fragment-index="2">Behavior is not really defined anywhere, uneven browser support</li>
+            <li class="fragment" data-fragment-index="3">Don't expect miracles from it</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="xcto" data-timeline-range="3" data-timeline-height="3" data-auto-fragment>
+          <h2>X-Content-Type-Options</h2>
+          <p>
+          <ul>
+            <li class="fragment" data-fragment-index="1">Protects against MIME type confusion attacks</li>
+          </ul>
+          </p>
+          <div class="center fragment hideable" data-fragment-index="1">
+            <video data-autoplay style="height: 40vh;">
+              <source data-src="src/images/mime-attacks.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!--
+GIF89a/*0;*/=0;
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>doEvil();</script>
+  </body>
+</html>
+          -->
+          <ul>
+            <li class="fragment" data-fragment-index="2">Tells browsers to disable content sniffing</li>
+          </ul>
+
+          <pre class="fragment" data-fragment-index="3" style="font-size: .9em;"><code class="html" data-trim>
+GIF89a/*0;*/=0;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;script&gt;doEvil();&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </code></pre>          
+
+          <aside class="notes">
+            MIME type confusion attacks are where your browser detects a piece of content as something other than was intended. For example, an image upload site might see an image as a JPEG because of its image headers, but the browser detected it as an HTML document, because it had html tags and what not. 
+          </aside>
+        </section>
+
+        <section data-timeline="xcto" data-timeline-range="3" data-timeline-height="3" data-auto-fragment>
+          <h2>X-Content-Type-Options</h2>
+
+          <ul>
+            <li>Helps Site Isolation stop attacks like Spectre and Meltdown</li>
+          </ul>
+
+          <pre class="fragment" style="font-size: 1.1em;" data-fragment-index="1"><code class="html" data-trim>&lt;img src=&quot;https://mabanque.bnpparibas/api/getBalance&quot;&gt;</code></pre>
+          <pre class="fragment" style="font-size: 1.1em;" data-fragment-index="2"><code data-trim>
+          {
+            "accountNumber": 719091707,
+            "balance": 5000
+          }</code></pre>
+
+          <p style="margin-top: 2em;">
+            <ul>
+              <li class="fragment" data-fragment-index="3">Basically no downside, help enforce the proper behavior</li>
+            </ul>
+            <pre class="fragment" data-fragment-index="3" style="font-size: 1.1em; data-fragment-index="3"><code class="http" data-trim data-noescape>X-Content-Type-Options: nosniff</code></pre>
+          </p>
+
+          <aside class="notes">
+            MIME type confusion attacks are where your browser detects a piece of content as something other than was intended. For example, an image upload site might see an image as a JPEG because of its image headers, but the browser detected it as an HTML document, because it had html tags and what not. 
+          </aside>
+        </section>
+
+        <section class="center" data-background-image="src/images/bg-cookies.png">
+          <quote>
+            <p>
+              &ldquo;The greatest problem of <strong class="yellow">communication</strong> is the illusion that it has been achieved.&rdquo;
+            </p>
+            <cite>
+              <author>William H. Whyte</author>
+              <location><em>Is Anybody Listening?</em><br>Fortune (1950)</location>
+            </cite>
+          </quote>
+        </section>
+
+        <section data-auto-fragment>
+          <h2>The Fundamental Problem</h2>
+          <img class="plain fragment hideable" style="max-height: 80vh;" data-src="src/images/communication-1.png">
+          <img class="plain fragment hideable" style="max-height: 80vh;" data-src="src/images/communication-2.png">
+          <img class="plain fragment hideable" style="max-height: 80vh;" data-src="src/images/communication-3.png">
+          <img class="plain fragment hideable" style="max-height: 80vh;" data-src="src/images/communication-4.png">
+          <img class="plain fragment hideable" style="max-height: 80vh;" data-src="src/images/communication-5.png">
+          <img class="plain fragment hideable" style="max-height: 80vh;" data-src="src/images/communication-6.png">
+          <img class="plain fragment hideable" style="max-height: 80vh;" data-src="src/images/communication-7.png">
+          <img class="plain fragment hideable" style="max-height: 80vh;" data-src="src/images/communication-8.png">
+          <aside class="notes">
+            <ul>
+              <li>Read this kitten</li>
+              <li>Execute this donut</li>
+              <li>Connect to this ferris wheel</li>
+              <li>Execute this ghost peppers</li>
+              <li>Connect to this chainsaw</li>
+          </aside>
+        </section>
+
+        <section data-timeline="csp1,csp2">
+          <h2>Content Security Policy</h2>
+          <div class="center"><img style="max-height: 25vh;" data-src="src/images/permissions.png"></div>
+          <p>
+          <ul>
+            <li>Permission system for your web site</li>
+            <li>Tells your browser things like:
+              <ul>
+                <li class="fragment">Where can I load things from (scripts, images, etc.)</li>
+                <li class="fragment">Who can I make XMLHttpRequest (XHR) connections to</li>
+                <li class="fragment">Who can I be framed by, and who can I frame?</li>
+                <li class="fragment">Can script mixed with content be executed?</li>
+               </ul>
+             </li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="csp1,csp2" data-auto-fragment>
+          <h2>Content Security Policy</h2>
+          <!-- python, huh? -->
+          <pre class="fragment hideable" style="font-size: 1.2em;" data-fragment-index="1"><code class="python" data-trim data-noescape>
+            Content-Security-Policy:
+              default-src 'none';
+              connect-src https://api.mozilla.com;
+              font-src 'self' https://fonts.gstatic.com;
+              form-action 'self';
+              frame-ancestors 'none';
+              img-src https://*.imgur.com;
+              script-src 'self' https://jquery.com/3.3.1/jquery.min.js
+              style-src 'self' 'unsafe-inline'
+          </code></pre>
+
+          <pre class="fragment hideable" style="font-size: 1.2em;" data-fragment-index="2"><code class="python" data-trim data-noescape>
+            Content-Security-Policy:
+              <mark>default-src 'none';</mark>
+              connect-src https://api.mozilla.com;
+              font-src 'self' https://fonts.gstatic.com;
+              form-action 'self';
+              frame-ancestors 'none';
+              img-src https://*.imgur.com;
+              script-src 'self' https://jquery.com/3.3.1/jquery.min.js
+              style-src 'self' 'unsafe-inline'
+          </code></pre>
+          <ul class="fragment hideable h3" data-fragment-index="2"><li>Any source without a <tt>-src</tt> directive (e.g. audio and video) is denied access.</li></ul>
+
+          <pre class="fragment hideable" style="font-size: 1.2em;" data-fragment-index="3"><code class="python" data-trim data-noescape>
+            Content-Security-Policy:
+              default-src 'none';
+              <mark>connect-src https://api.mozilla.com</mark>;
+              font-src 'self' https://fonts.gstatic.com;
+              form-action 'self';
+              frame-ancestors 'none';
+              img-src https://*.imgur.com;
+              script-src 'self' https://jquery.com/3.3.1/jquery.min.js
+              style-src 'self' 'unsafe-inline'
+          </code></pre>
+          <ul class="fragment hideable h3" data-fragment-index="3"><li>Can make XMLHttpRequests (XHR) to api.mozilla.com</li></ul>
+
+          <pre class="fragment hideable" style="font-size: 1.2em;" data-fragment-index="4"><code class="python" data-trim data-noescape>
+            Content-Security-Policy:
+              default-src 'none';
+              connect-src https://api.mozilla.com;
+              <mark>font-src 'self' https://fonts.gstatic.com;</mark>
+              form-action 'self';
+              frame-ancestors 'none';
+              img-src https://*.imgur.com;
+              script-src 'self' https://jquery.com/3.3.1/jquery.min.js
+              style-src 'self' 'unsafe-inline'
+          </code></pre>
+          <ul class="fragment hideable h3" data-fragment-index="4"><li>Can load fonts from the same origin and Google Fonts</li></ul>
+
+          <pre class="fragment hideable" style="font-size: 1.2em;" data-fragment-index="5"><code class="python" data-trim data-noescape>
+            Content-Security-Policy:
+              default-src 'none';
+              connect-src https://api.mozilla.com;
+              font-src 'self' https://fonts.gstatic.com;
+              <mark>form-action 'self';</mark>
+              frame-ancestors 'none';
+              img-src https://*.imgur.com;
+              script-src 'self' https://jquery.com/3.3.1/jquery.min.js
+              style-src 'self' 'unsafe-inline'
+          </code></pre>
+          <ul class="fragment hideable h3" data-fragment-index="5"><li>Forms can only be submitted to the same origin</li></ul>
+
+          <pre class="fragment hideable" style="font-size: 1.2em;" data-fragment-index="6"><code class="python" data-trim data-noescape>
+            Content-Security-Policy:
+              default-src 'none';
+              connect-src https://api.mozilla.com;
+              font-src 'self' https://fonts.gstatic.com;
+              form-action 'self';
+              <mark>frame-ancestors 'none';</mark>
+              img-src https://*.imgur.com;
+              script-src 'self' https://jquery.com/3.3.1/jquery.min.js
+              style-src 'self' 'unsafe-inline'
+          </code></pre>
+          <ul class="fragment hideable h3" data-fragment-index="6">
+            <li>Nothing can frame this site, not even itself.</li>
+            <li>Same as <tt>X-Frame-Options: DENY</tt></li>
+          </ul>
+
+          <pre class="fragment hideable" style="font-size: 1.2em;" data-fragment-index="7"><code class="python" data-trim data-noescape>
+            Content-Security-Policy:
+              default-src 'none';
+              connect-src https://api.mozilla.com;
+              font-src 'self' https://fonts.gstatic.com;
+              form-action 'self';
+              frame-ancestors 'none';
+              <mark>img-src https://*.imgur.com;</mark>
+              script-src 'self' https://jquery.com/3.3.1/jquery.min.js
+              style-src 'self' 'unsafe-inline'
+          </code></pre>
+          <ul class="fragment hideable h3" data-fragment-index="7"><li>Can load images from any imgur.com subdomain</li></ul>
+
+          <pre class="fragment hideable" style="font-size: 1.2em;" data-fragment-index="8"><code class="python" data-trim data-noescape>
+            Content-Security-Policy:
+              default-src 'none';
+              connect-src https://api.mozilla.com;
+              font-src 'self' https://fonts.gstatic.com;
+              form-action 'self';
+              frame-ancestors 'none';
+              img-src https://*.imgur.com;
+              <mark>script-src 'self' https://jquery.com/3.3.1/jquery.min.js</mark>
+              style-src 'self' 'unsafe-inline'
+          </code></pre>
+          <ul class="fragment hideable h3" data-fragment-index="8"><li>Can load scripts from same origin and one specific jQuery script</li></ul>
+
+          <pre class="fragment hideable" style="font-size: 1.2em;" data-fragment-index="9"><code class="python" data-trim data-noescape>
+            Content-Security-Policy:
+              default-src 'none';
+              connect-src https://api.mozilla.com;
+              font-src 'self' https://fonts.gstatic.com;
+              form-action 'self';
+              frame-ancestors 'none';
+              img-src https://*.imgur.com;
+              script-src 'self' https://jquery.com/3.3.1/jquery.min.js
+              <mark>style-src 'self' 'unsafe-inline'</mark>
+          </code></pre>
+          <ul class="fragment hideable h3" data-fragment-index="9"><li>Can load stylesheets from same origin and allows (unsafe) <tt>style</tt> attributes on tags</li></ul>
+
+          <pre class="fragment hideable" style="font-size: 1.2em;" data-fragment-index="10"><code class="python" data-trim data-noescape>
+            Content-Security-Policy:
+              default-src 'none';
+              connect-src https://api.mozilla.com;
+              font-src 'self' https://fonts.gstatic.com;
+              form-action 'self';
+              frame-ancestors 'none';
+              img-src https://*.imgur.com;
+              script-src 'self' https://jquery.com/3.3.1/jquery.min.js
+              <mark>style-src 'self' 'unsafe-inline'</mark>
+          </code></pre>
+          <ul class="fragment hideable h3" data-fragment-index="10"><li>Can load stylesheets from same origin and allows (unsafe) <tt>style</tt> attributes on tags</li></ul>
+
+          <div class="center fragment" data-fragment-index="10" style="font-size: 1.2em; top: -12em; position: relative;">
+            <video data-autoplay style="height: 40vh;">
+              <source data-src="src/images/long-list.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+
+        </section>
+
+        <section data-timeline="csp1,csp2">
+          <h2>Mozilla Laboratory Add-on</h2>
+          <div class="center"><img style="max-height: 45vh;" data-src="src/images/laboratory.png"></div>
+          <ul class="h3">
+            <li>Free add-on for Firefox that can generate a Content Security Policy</li>
+            <li class="fragment">Click around on things while it watches</li>
+          </ul>
+          <aside class="notes">
+            It took us seven years to generate our first policy for addons.mozilla.org, Laboratory was able to do it in about 15 minutes
+          </aside>
+        </section>
+
+        <section data-timeline="csp1,csp2" data-auto-fragment>
+          <h2>Content Security Policy <span class="red">(is not easy)</span></h2>
+          <p>
+          <ul>
+            <li>Strongly encourages separation of content, presentation, and code</li>
+          </ul>
+          </p>
+
+          <!--
+          </div>
+          <div id="footer" onClick=&quot;doClick();&quot; style="color: red;">
+            April King Inc.
+          </div>
+          <script>
+            // do something
+            doSomething();
+
+            // oh yeah and do this too
+            doSomethingElse();
+          </script>
+          </body>
+          -->
+          <pre class="fragment hideable" data-fragment-index="1" style="font-size: .9em;"><code class="html" data-trim>
+            &lt;div id=&quot;footer&quot; onClick=&quot;doClick();&quot; style=&quot;color: red;&quot;&gt;
+              Feet Are So Weird Like What's With Those Toes Anyways? &mdash; foot.com
+            &lt;/div&gt;
+            &lt;script&gt;
+              // do something
+              doSomething();
+
+              // oh yeah and do this too
+              doSomethingElse();
+            &lt;/script&gt;
+          &lt;/body&gt;
+          </code></pre>
+
+          <pre class="fragment hideable" data-fragment-index="2" style="font-size: .9em;"><code class="html" data-trim data-noescape>
+            &lt;div id=&quot;footer&quot; onClick=&quot;doClick();&quot; <mark>style=&quot;color: red;&quot;</mark>&gt;
+              Feet Are So Weird Like What's With Those Toes Anyways? &mdash; foot.com
+            &lt;/div&gt;
+            &lt;script&gt;
+              // do something
+              doSomething();
+
+              // oh yeah and do this too
+              doSomethingElse();
+            &lt;/script&gt;
+          &lt;/body&gt;
+          </code></pre>
+
+          <pre class="fragment hideable" data-fragment-index="3" style="font-size: .9em;"><code class="html" data-trim data-noescape>
+            &lt;div id=&quot;footer&quot; <mark>onClick=&quot;doClick();&quot;</mark> style=&quot;color: red;&quot;&gt;
+              Feet Are So Weird Like What's With Those Toes Anyways? &mdash; foot.com
+            &lt;/div&gt;<mark>
+            &lt;script&gt;
+              // do something
+              doSomething();
+
+              // oh yeah and do this too
+              doSomethingElse();
+            &lt;/script&gt;</mark>
+          &lt;/body&gt;
+          </code></pre>
+
+          <pre class="fragment hideable" data-fragment-index="4" style="font-size: .9em;"><code class="html" data-trim data-noescape>
+            &lt;div id=&quot;footer&quot; <mark>onClick=&quot;doClick();&quot;</mark> style=&quot;color: red;&quot;&gt;
+              Feet Are So Weird Like What's With Those Toes Anyways? &mdash; foot.com
+            &lt;/div&gt;<mark>
+            &lt;script&gt;
+              // do something
+              doSomething();
+
+              // oh yeah and do this too
+              doSomethingElse();
+            &lt;/script&gt;</mark>
+          &lt;/body&gt;
+          </code></pre>
+
+          <pre class="fragment hideable" data-fragment-index="5" style="font-size: .9em;"><code class="html" data-trim data-noescape>
+            &lt;div id=&quot;footer&quot; <mark>onClick=&quot;doClick();&quot;</mark> style=&quot;color: red;&quot;&gt;
+              Feet Are So Weird Like What's With Those Toes Anyways? &mdash; foot.com
+            &lt;/div&gt;<mark>
+            &lt;script&gt;
+              // do something
+              doSomething();
+
+              // oh yeah and do this too
+              doSomethingElse();
+            &lt;/script&gt;</mark>
+          &lt;/body&gt;
+          </code></pre>
+
+          <pre class="fragment hideable" data-fragment-index="6" style="font-size: .9em;"><code class="html" data-trim data-noescape>
+            &lt;div id=&quot;footer&quot; <mark>onClick=&quot;doClick();&quot;</mark> style=&quot;color: red;&quot;&gt;
+              Feet Are So Weird Like What's With Those Toes Anyways? &mdash; foot.com
+            &lt;/div&gt;<mark>
+            &lt;script&gt;
+              // do something
+              doSomething();
+
+              // oh yeah and do this too
+              doSomethingElse();
+            &lt;/script&gt;</mark>
+          &lt;/body&gt;
+          </code></pre>
+
+          <ul>
+            <li class="fragment hideable" data-fragment-index="2">By default, CSP will block the execution of inline styles</li>
+            <li class="fragment" data-fragment-index="3">By default, CSP will block the execution of inline script</li>
+            <li class="fragment" data-fragment-index="4">You can disable this with the <tt>'unsafe-inline'</tt> directive</li>
+            <li class="fragment" data-fragment-index="5">But this just opens you back up to injection attacks</li>
+          </ul>
+
+          <div class="center fragment" data-fragment-index="6" style="font-size: 1.2em; top: -16em; position: relative;">
+            <video data-autoplay style="height: 50vh;">
+              <source data-src="src/images/xss-ahh.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <aside class="notes">
+            This is really bad and you're like nooooooooo....
+          </aside>
+        </section>
+
+        <section data-timeline="csp1,csp2" data-auto-fragment>
+          <h2>Content Security Policy <span class="red">(inline stuff)</span></h2>
+            <p>
+            <!--
+            </div>
+            <script>
+              // do something
+              doSomething();
+
+              // oh yeah and do this too
+              doSomethingElse();
+            </script>
+            </body>
+            -->
+            <pre style="font-size: 1em"><code class="python" data-trim data-noescape>Content-Security-Policy: script-src <span class="fragment hideable" data-fragment-index="1">'nonce-XQGwbxfChfoEv4nFJQEHVeDsd'</span><mark class="fragment hideable" data-fragment-index="2">'nonce-XQGwbxfChfoEv4nFJQEHVeDsd'</mark></code></pre>
+            <pre style="font-size: 1em;"><code class="html" data-trim data-noescape>
+              &lt;/div&gt;
+              &lt;script <span class="fragment hideable" data-fragment-index="1">nonce=&quot;XQGwbxfChfoEv4nFJQEHVeDsd&quot;</span><mark class="fragment hideable" data-fragment-index="2">nonce=&quot;XQGwbxfChfoEv4nFJQEHVeDsd&quot;</mark>&gt;
+                // do something
+                doSomething();
+
+                // oh yeah and do this too
+                doSomethingElse();
+              &lt;/script&gt;
+            &lt;/body&gt;
+            </code></pre>
+          </p>
+
+          <ul>
+            <li>You set an unpredictible nonce in your Content Security Policy, and tag all trusted code with it</li>
+          </ul>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="csp1,csp2" data-auto-fragment>
+          <h2>Content Security Policy <span class="red">(more inline stuff)</span></h2>
+            <p>
+            <!--
+            </div>
+            <script>
+              // do something
+              doSomething();
+
+              // oh yeah and do this too
+              doSomethingElse();
+            </script>
+            </body>
+            -->
+            <pre style="font-size: 1em"><code class="python" data-trim data-noescape>Content-Security-Policy:
+  script-src <span class="fragment hideable" data-fragment-index="1">'sha256-b1cc7d04a1f9f15cfa63030866dd152a8618762912694d1'</span><mark class="fragment hideable" data-fragment-index="2">'sha256-b1cc7d04a1f9f15cfa63030866dd152a8618762912694d1'</mark></code></pre>
+
+            <pre style="font-size: 1em;"><code class="html" data-trim data-noescape>
+              &lt;/div&gt;
+              &lt;script&gt;<span class="fragment hideable" data-fragment-index="1"> 
+                // do something
+                doSomething();
+
+                // oh yeah and do this too
+                doSomethingElse();
+              </span><mark class="fragment hideable" data-fragment-index="2"> 
+                // do something
+                doSomething();
+
+                // oh yeah and do this too
+                doSomethingElse();
+              </mark>&lt;/script&gt;
+            &lt;/body&gt;
+            </code></pre>
+          </p>
+
+          <ul>
+            <li>You can generate cryptographic hashes of your inline script</li>
+          </ul>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="csp3" data-timeline-range="3">
+          <h2>Content Security Policy 3</h2>
+          <p>
+          <ul>
+            <li>Complex websites had difficulty tracking what scripts they were using</li>
+            <li class="fragment">They were doing bad things like
+              <ul>
+                <li><pre style="font-size: 1.1em;"><code class="http" data-trim data-noescape>script-src https://cdnjs.cloudflare.com</code></pre></li>
+                <li><pre style="font-size: 1.1em;"><code class="http" data-trim data-noescape>script-src https:</code></pre></li>
+                <li><pre style="font-size: 1.1em;"><code class="http" data-trim data-noescape>script-src 'unsafe-inline'</code></pre></li>
+              </ul>
+            <li class="fragment">Added support for <tt>script-src 'strict-dynamic'</tt></li>
+          </ul>
+          </p>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="csp3" data-timeline-range="3" data-auto-fragment>
+          <h2 class="fragment hideable" data-fragment-index="1">Content Security Policy</h2>
+          <h2 class="fragment hideable" data-fragment-index="2">Content Security Policy <strong>1</strong></h2>
+          <h2 class="fragment hideable" data-fragment-index="3">Content Security Policy <strong>2</strong></h2>
+          <h2 class="fragment hideable" data-fragment-index="4">Content Security Policy <strong>3</strong> <span class="red">(very strict much discipline)</span></h2>
+
+          <div class="fragment hideable" data-fragment-index="1">
+            <pre style="font-size: .9em"><code class="python" data-trim data-noescape>Content-Security-Policy: script-src 
+                           'strict-dynamic'
+                           'nonce-XQGwbxfChfoEv4nFJQEHVeDsd'
+                           https:
+                           'unsafe-inline'</code></pre>
+            <pre style="font-size: .9em;"><code class="html" data-trim data-noescape>
+              &lt;script nonce=&quot;XQGwbxfChfoEv4nFJQEHVeDsd&quot;&gt;
+                const loadScript = (url) => {  // script loader
+                  const script = createElement('script');
+                  script.src = url;
+                  document.head.appendChild(script);
+                };
+
+                loadScript('https://cdnjs.cloudflare.com/jquery-3.3.1.js'); // load jquery
+              &lt;/script&gt;
+              </code></pre>
+          </div>
+
+          <div class="fragment hideable" data-fragment-index="2">
+            <pre style="font-size: .9em"><code class="python" data-trim data-noescape>Content-Security-Policy: script-src 
+                           'strict-dynamic'
+                           'nonce-XQGwbxfChfoEv4nFJQEHVeDsd'
+                           <mark>https:</mark>
+                           <mark>'unsafe-inline'</mark>  <span class="red"><-- CSP 1</span></code></pre>
+            <pre style="font-size: .9em;"><code class="html" data-trim data-noescape>
+              &lt;<mark>script</mark> nonce=&quot;XQGwbxfChfoEv4nFJQEHVeDsd&quot;&gt;
+                const loadScript = (url) => {  // script loader
+                  const script = createElement('script');
+                  script.src = url;
+                  document.head.appendChild(script);
+                };
+
+                loadScript('<mark>https:</mark>//cdnjs.cloudflare.com/jquery-3.3.1.js'); // load jquery
+              &lt;/script&gt;
+            </code></pre>
+
+            <ul>
+              <li>Basically functions as if there was no CSP on scripts</li>
+            </ul>
+          </div>
+
+          <div class="fragment hideable" data-fragment-index="3">
+            <pre style="font-size: .9em"><code class="python" data-trim data-noescape>Content-Security-Policy: script-src 
+                           'strict-dynamic'
+                           <mark>'nonce-XQGwbxfChfoEv4nFJQEHVeDsd'</mark> <span class="red"><-- CSP 2</span>
+                           <mark>https:</mark>
+                           <s>'unsafe-inline'</s></code></pre>
+            <pre style="font-size: .9em;"><code class="html" data-trim data-noescape>
+              &lt;script <mark>nonce=&quot;XQGwbxfChfoEv4nFJQEHVeDsd&quot;</mark>&gt;
+                const loadScript = (url) => {  // script loader
+                  const script = createElement('script');
+                  script.src = url;
+                  document.head.appendChild(script);
+                };
+
+                loadScript('<mark>https:</mark>//cdnjs.cloudflare.com/jquery-3.3.1.js'); // load jquery
+              &lt;/script&gt;
+            </code></pre>
+
+            <ul>
+              <li>Blocks inline and HTTP script, although XSS protection is limited by broad <code>https:</code> scope</li>
+            </ul>
+          </div>
+
+          <div class="fragment hideable" data-fragment-index="4">
+            <pre style="font-size: .9em"><code class="python" data-trim data-noescape>Content-Security-Policy: script-src 
+                           <mark>'strict-dynamic'</mark> <span class="red"><-- CSP 3</span>
+                           <mark>'nonce-XQGwbxfChfoEv4nFJQEHVeDsd'</mark>
+                           <s>https:</s>
+                           <s>'unsafe-inline'</s></code></pre>
+            <pre style="font-size: .9em;"><code class="html" data-trim data-noescape>
+              &lt;script <mark>nonce=&quot;XQGwbxfChfoEv4nFJQEHVeDsd&quot;</mark>&gt;
+                const loadScript = (url) => {  // script loader
+                  const script = createElement('script');
+                  script.src = url;
+                  document.head.appendChild(script);
+                };
+
+                <mark>loadScript('https://cdnjs.cloudflare.com/jquery-3.3.1.js');</mark> // load jquery
+              &lt;/script&gt;
+            </code></pre>
+
+            <ul>
+              <li>Anything with the nonce can load, and its trust is inherited.</li>
+              <li>No need for broad sources, such as <code>https:</code></li>
+            </ul>
+          </div>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section class="center" data-background-video="src/images/confetti.mp4" data-background-video-loop="true" data-transition="convex-in concave-out">
+          <div class="center" style="color: white; font-size: 45vh; margin-top: -3vh; text-shadow: 0 0 1vh black;">80%</div>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section class="center" data-background-image="src/images/bg-cookies.png">
+          <quote>
+            <p style="display: inline-block; margin: 0 0 .25em 1em; text-indent: 0;"><strong class="yellow">April King</strong> is the world&lsquo;s <strong class="yellow">foremost</strong> authority on matters of web security, and her <strong class="yellow">integrity</strong> is unimpeachable.</p>
+            </p>
+            <cite style="margin-left: 1.4em;">
+              <author>Tim Berners-Lee (probably)</author>
+              <location>Creator of the World Wide Web,<br>University of Oxford</location>
+            </cite>
+          </quote>
+        </section>
+
+        <section data-timeline="sri">
+          <h2>Subresource Integrity</h2>
+          <p style="margin-top: 1em;">What does HTML this code do? <span class="fragment" style="margin-top: 1em;" data-fragment-index="1">What does HTML this code <strong>really</strong> do???</span></p>
+          <pre style="font-size: 1em"><code class="html" data-trim data-noescape>&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;</code></pre>
+          <ul style="margin-top: .5em;">
+            <li class="fragment" data-fragment-index="2">Make XMLHttpRequests</li>
+            <li class="fragment" data-fragment-index="3">Read all non-<tt>HttpOnly</tt> cookies</li>
+            <li class="fragment" data-fragment-index="4">Record every keystroke and form entry</li>
+            <li class="fragment" data-fragment-index="5">Abuse permissions to the camera, location, etc.</li>
+            <li class="fragment" data-fragment-index="6">It could even deface your website!  &#x1f600;</li>
+          </ul>
+          <div class="center fragment" data-fragment-index="6"><img data-src="src/images/defacement.png" style="border: solid 2px gray; max-height: 20vh; margin-top: 3vh;">
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="sri">
+          <h2>Subresource Integrity</h2>
+          <p style="margin-top: 1em;">All you have to do is change your code to this:</p>
+          <pre style="font-size: 1em"><code class="html" data-trim data-noescape>&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;
+        <mark>integrity</mark>=&quot;sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4P=&quot;
+        <mark>crossorigin</mark>=&quot;anonymous&quot;&gt;</code></pre>
+
+          <ul style="margin-top: 1em;">
+            <li class="fragment">Good to have local fallback if loading fails</li>
+            <li class="fragment"><span style="font-size: 3em; vertical-align: middle;">🍩</span></li>
+          </ul>
+
+          <aside class="notes">
+            I actually wrote a whole bunch of bulletpoints about how difficult this was. Like this one (5). That's way easier than sitting through an hour of this presentation.
+          </aside>
+        </section>
+
+        <section class="center" data-background-image="src/images/bg-cookies.png">
+          <quote>
+            <p>
+              &gt; Has anyone else noticed that the HTTP header &ldquo;Referer:&rdquo; is spelled wrong?
+            </p>
+            <p style="display: inline-block; margin: 0 0 .25em 1em; text-indent: 0;">That's okay, neither one (<strong class="yellow">referer</strong> or <strong class="yellow">referrer</strong>) is understood by <code>spell</code> anyway. I say we should just blame it on France.<span style="font-family: serif">&nbsp;&nbsp;</span>;-)</p>
+            </p>
+            <cite style="margin-left: 1.4em;">
+              <author>Roy T. Fielding</author>
+              <location>Co-author of HTTP specification,<br>UC Urvine</location>
+            </cite>
+          </quote>
+        </section>
+
+        <section data-timeline="referrerpolicy" data-timeline-range="3">
+          <h2>Referrer Policy</h2>
+
+          <ul>
+            <li>Let's say you're on <tt>mozilla.org</tt>, and you see a piece of code like this&hellip;</li>
+          </ul>
+
+          <pre class="fragment" style="font-size: 1.25em;"><code class="html" data-trim>
+<!-- load the greatest image of all time -->
+&lt;img src=&quot;https://badssl.com/image.jpg&quot;&gt;
+          </code></pre>
+
+          <ul class="fragment">
+            <li>What kind of HTTP request does it send?</li>
+          </ul>
+
+          <pre class="fragment hideable" style="font-size: 1em;"><code class="http" data-trim data-noescape>
+            GET /image.jpg HTTP/1.1
+            Host: badssl.com
+            User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
+            Accept: */*
+            Connection: keep-alive
+            Referer: https://mozilla.org/
+          </code></pre>
+
+          <pre class="fragment hideable" style="font-size: 1em;"><code class="http" data-trim data-noescape>
+            GET /image.jpg HTTP/1.1
+            Host: badssl.com
+            User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
+            Accept: */*
+            Connection: keep-alive
+            Referer: <mark>https://mozilla.org/</mark>
+          </code></pre>
+
+          <pre class="fragment hideable" style="font-size: 1em;"><code class="http" data-trim data-noescape>
+            GET /image.jpg HTTP/1.1
+            Host: badssl.com
+            User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
+            Accept: */*
+            Connection: keep-alive
+            <span class="h3">Referer: <mark>https://mozilla.org/</mark></span>
+          </code></pre>
+
+          <pre class="fragment hideable" style="font-size: 1em;"><code class="http" data-trim data-noescape>
+            GET /image.jpg HTTP/1.1
+            Host: badssl.com
+            User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
+            Accept: */*
+            Connection: keep-alive
+            <span class="h2">Referer: <mark>https://mozilla.org/</mark></span>
+          </code></pre>
+
+          <pre class="fragment hideable" style="font-size: 1em;"><code class="http" data-trim data-noescape>
+            GET /image.jpg HTTP/1.1
+            Host: badssl.com
+            User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
+            Accept: */*
+            Connection: keep-alive
+            <div style="font-size: 2.25em; margin: 10px 0 15px 0;">Referer: <mark>https://mozilla.org/</mark></div>
+          </code></pre>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="referrerpolicy" data-timeline-range="3">
+          <h2>Referrer Policy</h2>
+
+          <ul>
+            <li>Even worse, if you're at an unlisted page such as <br><tt>bank.com/pwreset-cd39-e5a5-a891-b3f4</tt>,<br>you might have something like this:</li>
+          </ul>
+
+          <pre style="font-size: 1.2em; z-index: 0;"><code class="http" data-trim data-noescape>
+            GET /bank/logo.jpg HTTP/1.1
+            Host: some-cdn.com
+            User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
+            Accept: */*
+            Connection: keep-alive
+            Referer: <mark>https://bank.com/pwreset-cd39-e5a5-a891-b3f4</mark>
+          </code></pre>
+
+          <div class="center fragment" style="font-size: 1.2em; top: -9.25em; position: relative;">
+            <video data-autoplay style="height: 40vh;">
+              <source data-src="src/images/shh-slow.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+
+        <section data-timeline="referrerpolicy" data-timeline-range="3">
+          <h2>Referrer Policy</h2>
+          <p style="margin-left: 2.5%;">Referrer Policy lets you restrict when and how the <tt>Referrer</tt> header is sent.</p>
+
+          <div class="fragment">
+            <ul>
+              <li>If <tt>bank.com</tt> instead sent something like this&hellip;</li>
+            </ul>
+
+            <pre style="font-size: 1.2em; z-index: 0;"><code class="http" data-trim data-noescape>
+             Referrer-Policy: strict-origin-when-cross-origin
+            </code></pre>
+
+            <p style="margin-left: 2.5%;">Then <tt>some-cdn.com</tt> would only see this&hellip;</p>
+
+            <pre style="font-size: 1.2em; z-index: 0;"><code class="http" data-trim data-noescape>
+             Referrer: https://bank.com
+            </code></pre>
+          </div>
+
+          <div class="fragment">
+            <ul style="margin-top: 1em;">
+              <li>Or if it sent this&hellip;</li>
+            </ul>
+
+            <pre style="font-size: 1.2em; z-index: 0;"><code class="http" data-trim data-noescape>
+             Referrer-Policy: same-origin
+            </code></pre>
+
+            <p style="margin-left: 2.5%;">&hellip;then <tt>some-cdn.com</tt> would never receive the <tt>Referrer</tt> header!</p>
+          </div>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section data-timeline="referrerpolicy" data-timeline-range="3">
+          <h2>Referrer Policy</h2>
+          <div class="center">
+            <video data-autoplay style="height: 40vh;">
+              <source data-src="src/images/cat-privacy.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <ul>
+            <li>Considerable control over the <tt>Referrer</tt> header</li>
+            <li class="fragment">Huge win for user privacy</li>
+            <li class="fragment">Helps prevent accidental information disclosures</li>
+            <li class="fragment">Still lets you collect full referrer data for your own domains, if you want</li>
+          </ul>
+
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+        <section class="center" data-background-image="src/images/bg-cookies.png">
+          <quote>
+            <p style="display: inline-block; margin: 0 0 .25em 1em; text-indent: 0;">I must have passed out.<br><span style="font-size: 1.2em;">Where am I?</span><br><span style="font-size: 1.4em;">Who is this <strong class="yellow">weird lady</strong>?</span></p>
+            </p>
+            <cite style="margin-left: 1.4em;">
+              <author>You</author>
+              <location>Paris-Web attendee,<br>Paris Web</location>
+            </cite>
+          </quote>
+        </section>
+
+        <section data-timeline="ssllabs" data-timeline-range="2.5">
+          <h2>SSL Labs (Qualys)</h2>
+          <img class="center plain" style="max-height: 45vh;" data-src="src/images/very.badssl.com-ssllabs.png">
+          <p>
+          <ul>
+            <li>Configuring cipher suites and protocols was hard</li>
+            <li>You had no feedback if you were doing it right (or wrong)</li>
+            <li class="fragment">Gave you a strict public letter grade</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser
+          </aside>
+        </section>
+
+        <section data-timeline="serversidetls" data-timeline-range="3">
+          <h2>Mozilla Server Side TLS Guidelines</h2>
+          <img class="center plain" style="max-height: 45vh;" data-src="src/images/server-side-tls-guidelines.png">
+          <p>
+          <ul>
+            <li>Made it easy to get that <strong class="red">A+</strong> grade</li>
+            <li>Configuration tool to generate easy copy-and-paste configurations</li>
+            <li>Most frequently referenced TLS configurations</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser
+          </aside>
+        </section>
+
+        <section data-timeline="observatory" data-timeline-range="2.5">
+          <h2>Mozilla Observatory</h2>
+          <img class="center plain" style="max-height: 45vh;" data-src="src/images/observatory-1.png">
+          <p>
+          <ul>
+            <li>As SSL Labs is for <strong>TLS</strong>, Mozilla Observatory is for <strong>front-end web security</strong></li>
+            <li class="fragment">100% free and open-source</li>
+            <li class="fragment">8.5M scans across 2.5M domains</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser
+          </aside>
+        </section>
+
+        <section data-timeline="observatory" data-timeline-range="2.5" data-auto-fragment>
+          <h2>Mozilla Observatory</h2>
+          <div class="center" style="height: 45vh;">
+            <img class="plain fragment hideable" data-fragment-index="1" data-src="src/images/observatory-2.png">
+            <img class="plain fragment hideable" data-fragment-index="2" data-src="src/images/observatory-3.png">
+          </div>
+          <p>
+          <ul>
+            <li>Strict grading system – expect to fail the first time</li>
+            <li class="fragment" data-fragment-index="2">Clear advice on what to do next, with links to documentation</li>
+          </ul>
+          </p>
+          <aside class="notes">
+            This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser
+          </aside>
+        </section>
+
+        <section data-timeline="observatory" data-timeline-range="2.5">
+          <h2>Mozilla Observatory (Tests)</h2>
+          <img class="plain center" style="max-height: 60vh;" data-src="src/images/observatory-tests.png">
+          <aside class="notes">
+            This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser
+          </aside>
+        </section>
+
+        <section data-timeline="observatory" data-timeline-range="2.5">
+          <h2>Mozilla Observatory (CSP)</h2>
+          <img class="plain center" style="max-height: 60vh;" data-src="src/images/observatory-csp.png">
+          <aside class="notes">
+            This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser
+          </aside>
+        </section>
+
+        <section data-timeline="observatory" data-timeline-range="2.5">
+          <h2>Mozilla Observatory (TLS)</h2>
+          <img class="plain center" style="max-height: 50vh;" data-src="src/images/tlsobservatory.png">
+          <ul style="margin-top: 5vh;">
+            <li>If you follow the Mozilla TLS guidelines, it can test compliance</li>
+          </ul>
+          <aside class="notes">
+            This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser
+          </aside>
+        </section>
+
+        <section data-timeline="observatory" data-timeline-range="2.5">
+          <h2>Mozilla Observatory (SSH)</h2>
+          <img class="plain center" style="max-height: 50vh;" data-src="src/images/sshobservatory.png">
+          <ul style="margin-top: 5vh;">
+            <li>And hey! The same with SSH. 🎉🎉🎉</li>
+          </ul>
+          <aside class="notes">
+            This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser
+          </aside>
+        </section>
+
+        <section data-timeline="observatory" data-timeline-range="2.5">
+          <h2>Mozilla Observatory (the other cool stuff)</h2>
+          <img class="plain center" style="max-height: 40vh;" data-src="src/images/observatory-cli.png">
+          <ul style="margin-top: 5vh;">
+            <li>Command-line clients, Python libraries</li>
+            <li>Free public API, easy to setup images for internal use</li>
+            <li>Integration with 3rd parties, such as SSL Labs</li>
+            <li>Please try it out at: <a href="https://observatory.mozilla.org">observatory.mozilla.org</a>
+          </ul>
+          <aside class="notes">
+            This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser
+          </aside>
+        </section>
+
+        <section class="center" data-background-color="black" data-background-image="src/images/keynote-speakers.png" data-background-size="contain"></section>
+        <section class="center" data-background-color="black" data-background-image="src/images/keynote-speakers-midday.png" data-background-size="contain"></section>
+
+        <section class="center white h3" data-background-image="src/images/bg-title-slide.png">
+          <img style="display: block; height: 5vh; margin: 4vh 0 6vh;" data-src="src/images/moz-logo-bw-rgb.svg"></img>
+          <h2 class="white" style="margin-bottom: 0;">April King</h2>
+          <div>Mozilla Observatory</div>
+          <div style="margin-bottom: 6vh;">25 years of web security standards</div>
+          <div class="h5" style="text-decoration: underline;">Feedback</div>
+          <div class="h6">april@mozilla.com</div>
+          <div class="h6">irc.mozilla.org #infosec</div>
+          <div class="h6">github.com/april/websec-presentation</div>
+        </section>
+
+        <section class="center" data-background-video="src/images/confetti.mp4" data-background-video-loop="false" data-transition="convex-in concave-out">
+          <div class="center" style="color: white; font-size: 70vh; margin-top: -3vh; text-shadow: 0 0 1vh black;">?</div>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
+        </section>
+
+      </div>
+    </div>
+
+
+    <footer class="hidden">
+      <timeline data-timeline-height="2"></timeline>
+    </footer>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script type="text/javascript">
+      // Initialize reveal.js
+      Reveal.initialize({
+        center: false,
+        controls: false,
+        dependencies: [
+//          { src: 'plugin/markdown/marked.js' },
+//          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ],
+        fragmentInURL: true,
+        history: true,
+        height: '100%',
+        margin: 0.1,
+        progress: false,
+        width: '100%',
+      });
+    </script>
+
+    <script src="node_modules/vis/dist/vis.min.js"></script>
+
+    <script type="text/javascript">
+      // get the container for the timeline
+      const container = document.getElementsByTagName('timeline')[0];
+
+      // dates for the timeline
+      const dates = new vis.DataSet([
+        { id: 'pgp' , content: 'Pretty Good Privacy (PGP)', title: 'Pretty Good Privacy', start: '1991-06' },
+        { id: 'ssl2' , content: 'SSL 2.0', title: 'Secure Sockets Layer 2.0', start: '1995-03' },
+        { id: 'sop', content: 'Same-origin policy', start: '1995-09' },
+        { id: 'pct1', content: 'PCT 1.0', title: 'Private Communications Technology 1.0', start: '1995-10' },
+        { id: 'ssl3', content: 'SSL 3.0', title: 'Secure Sockets Layer 3.0', start: '1995-11' },
+        { id: 'securecookies', content: 'Secure Cookies', start: '1997-02' },
+        { id: 'tls10', content: 'TLS 1.0', title: 'Transport Layer Security 1.0', start: '1999-01' },
+        { id: 'httponlycookies', content: '<tt>HttpOnly</tt> Cookies', start: '2002-09', /* end: '2007-06' */},
+        { id: 'sni', content: 'Subject Name Indicator', start: '2003-06' },
+        { id: 'tls11', content: 'TLS 1.1', title: 'Transport Layer Security 1.1', start: '2006-04' },
+        { id: 'tls12', content: 'TLS 1.2', title: 'Transport Layer Security 1.2', start: '2008-08' },
+        { id: 'aead', content: 'AEAD (GCM)', title: 'Authenticated Encryption with Associated Data (Galois Counter Mode)', start: '2008-10' },
+        { id: 'xxssp', content: '<tt>X-XSS-Protection</tt>', start: '2009-03' },
+        { id: 'xfo', content: '<tt>X-Frame-Options</tt>', start: '2009-03' },
+        { id: 'xcto', content: '<tt>X-Content-Type-Options</tt>', start: '2009-03' },
+        { id: 'ssllabs', content: 'SSL Labs', title: 'SSL Labs', start: '2009-06' },
+        { id: 'hsts', content: 'HSTS', title: 'HTTP Strict Transport Security', start: '2009-09' },
+        { id: 'csp1', content: 'CSP 1.0', title: 'Content Security Policy 1.0', start: '2011-11' },
+        { id: 'hstspreloading', content: 'HSTS Preloading', title: 'HTTP Strict Transport Security Preloading', start: '2012-03' },
+        { id: 'serversidetls', content: 'Server Side TLS', title: 'Mozilla Server Side TLS Guidelines', start: '2013-10' },
+        { id: 'csp2', content: 'CSP 2.0', title: 'Content Security Policy 2.0', start: '2014-03' },
+        { id: 'samesitecookies', content: '<tt>SameSite</tt> Cookies', start: '2014-10' },
+        { id: 'hpkp', content: 'HPKP', title: 'HTTP Public Key Pinning', start: '2015-04' },
+        { id: 'letsencrypt', content: '<img src="src/images/letsencrypt-lockonly.svg" style="height: 1em; margin-right: .25em;">Let\'s Encrypt', start: '2015-09' },
+        { id: 'sri', content: 'Subresource Integrity', start: '2015-11' },
+        { id: 'csp3', content: 'CSP 3.0', title: 'Content Security Policy 3.0', start: '2016-01' },
+        { id: 'cookieprefixes', content: 'Cookie Prefixes', start: '2016-03' },
+        { id: 'referrerpolicy', content: 'Referrer Policy', start: '2016-06' },
+        { id: 'observatory', content: 'Mozilla Observatory', start: '2016-06' },
+        { id: 'certificatetransparency', content: 'Certificate Transparency', start: '2017-10' },
+        // maybe fit this in later?
+        // { id: 'doh', content: 'DNS over HTTPS', start: '2017-12' },
+        { id: 'tls13', content: 'TLS 1.3', title: 'Transport Layer Security 3.0', start: '2018-08' },
+      ]);
+
+      // timeline configuration
+      const options = {
+        end: '2003-03',
+        height: '100%',
+        max: '2019-01',
+        min: '1990-10',
+//        'rollingMode.follow': true,
+        start: '1995-01',
+        showCurrentTime: false,
+        timeAxis: {'scale': 'year', step: 1},
+//        zoomable: false,
+//        zoomMax: 157784630000,  // five years
+//        zoomMin: 157784630000,  // five years
+      };
+
+      const timeline = new vis.Timeline(container, dates, options);
+    </script>
+
+    <script type="text/javascript">
+      const slideChangedListener = e => {
+        const animationDuration = {  // these match the reveal speeds
+          fast: 400,
+          default: 800,
+          slow: 1200,
+        };
+        const defaultRange = 6;  // years
+        // const defaultHeight = '14vh';
+        const footerElem = document.getElementsByTagName('footer')[0];
+        const timelineElem = document.getElementsByTagName('timeline')[0];
+
+        // get the data-timeline value of the current slide, aka what items to focus on
+        // and the data-timeline-height, aka how tall the timeline should be
+        const dataTimeline = e.currentSlide.getAttribute('data-timeline');
+        const dataTimelineHeight = e.currentSlide.getAttribute('data-timeline-height');
+
+        // get the range of what we should set things to
+        let dataTimelineRange = e.currentSlide.hasAttribute('data-timeline-range') ? parseInt(e.currentSlide.getAttribute('data-timeline-range')) : defaultRange;
+        dataTimelineRange = dataTimelineRange * 365 * 24 * 60 * 60 * 1000;  // convert to milliseconds
+
+        // get the animation duration
+        let dataAnimationDuration = animationDuration.default;
+        if (e.previousSlide && e.previousSlide.hasAttribute('data-transition-speed')) {
+          dataAnimationDuration = animationDuration[e.previousSlide.getAttribute('data-transition-speed')];
+        }
+
+        // show or hide the timeline based on what we see
+        if (dataTimeline) {
+          // get the timeline ids to focus on
+          const ids = dataTimeline.split(',');
+
+          // get the position of the first item and center things as best as possible with it
+          const idDate = new Date(dates.get(ids[0]).start).getTime();
+
+          // center on the chosen date
+          timeline.setSelection(ids, { focus: false });
+          timeline.setWindow(
+            parseInt(idDate - dataTimelineRange / 2),  // start
+            parseInt(idDate + dataTimelineRange / 2),  // end
+            {
+              animation: {
+                duration: animationDuration.default * .65,  // roughly approximating the reveal.js transition speed
+                easingFunction: 'easeInQuad',
+              }
+            },
+          );
+
+          // show the timeline
+          footerElem.classList.remove('hidden');
+        } else {
+          footerElem.classList.add('hidden');
+        }
+
+        // set the height, regardless of whether timeline is shown
+        if (dataTimelineHeight) {
+          timelineElem.setAttribute('data-timeline-height', dataTimelineHeight);
+        } else {
+          timelineElem.removeAttribute('data-timeline-height');
+        }
+
+        // next, we detect if the slide has data-auto-fragment enabled and if so we advance to the first fragment
+        if (e.currentSlide.hasAttribute('data-auto-fragment')) {
+          Reveal.setState({indexf: 0});
+        }
+
+        console.log('the slide changed', e, 'and here is data-timeline', e.currentSlide.getAttribute('data-timeline'));
+      };
+
+      // add the event listeners
+      Reveal.addEventListener('ready', e => { slideChangedListener(e); });
+      Reveal.addEventListener('slidechanged', e => {
+        // do various things when the slide changes
+        slideChangedListener(e);
+      });
+
+      // this is for the stored XSS thing
+      Reveal.addEventListener('storedxss', () => {
+        const text = document.getElementById('storedxss').value;
+
+        // have the text value be anything on the first line
+        document.getElementById('storedxsstext').textContent = text.split('\n')[0];
+
+        // and the alert anything inside the alert text
+        const alerttext = text.split('alert(\'')[1].split('\'')[0];
+
+        alert(alerttext);
+      });
+    </script>
+  </body>
+</html>
