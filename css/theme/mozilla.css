@@ -396,11 +396,11 @@ body footer.hidden {
 body footer timeline {
   display: block;
   font-family: "Open Sans", "Source Sans Pro", Helvetica, sans-serif;
-  height: 14vh;
+  height: 9em;
   width: 100%; }
 
 body footer timeline[data-timeline-height="3"] {
-  height: 18vh; }
+  height: 11.5em; }
 
 body footer timeline tt {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -410,10 +410,10 @@ body footer timeline tt {
   font-size: 1.3em; }
 
 .reveal section.present[data-timeline] {
-  margin-bottom: 14vh; }
+  margin-bottom: 9em; }
 
 .reveal section.present[data-timeline-height="3"] {
-  margin-bottom: 18vh; }
+  margin-bottom: 11.5em; }
 
 .reveal section img, .reveal section video:not(.plain) {
   border: 0;
