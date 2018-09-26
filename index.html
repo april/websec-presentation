@@ -31,8 +31,8 @@
         <section class="center white h3" data-background-image="src/images/bg-title-slide.png">
           <img style="display: block; height: 5vh; margin: 4vh 0 6vh;" data-src="src/images/moz-logo-bw-rgb.svg"></img>
           <h2 class="white" style="margin-bottom: 0;">Mozilla Observatory</h2>
-          <div style="margin-bottom: 6vh;">25 years of web security standards</div>
-          <div class="h6" style="margin-bottom: 4vh;">2018.10.05</div>
+          <div style="margin-bottom: 6vh;">25 years of web security</div>
+          <div class="h6" style="margin-bottom: 4vh;">2018.10.04</div>
           <div class="h6">April King</div>
           <div class="h6">Staff Security Engineer</div>
         </section>
@@ -211,8 +211,8 @@
           <p>
           <ul>
             <li>Further cleanup and bug fixes</li>
-            <li>Added a lot of flexability via TLS Extensions</li>
-            <li>Added support for AES (Advanced Encryption Standard) cipher and <tt><u>AEADs</u></tt></li>
+            <li class="fragment">Added a lot of flexibility via TLS Extensions</li>
+            <li class="fragment">Added support for AES (Advanced Encryption Standard) cipher and <tt><u>AEADs</u></tt></li>
           </ul>
           </p>
           <aside class="notes">
@@ -220,7 +220,7 @@
         </section>
 
         <section data-timeline="tls12,aead" data-timeline-range="3">
-          <h2>Authenticated Data with Associated Data (AEAD)</h2>
+          <h2>Authenticated Encryption with Associated Data (AEAD)</h2>
           <div class="center">
             <ul>
               <li>Combining a cipher, block mode, and message authentication code (MACs) was <em>really hard</em></li>
@@ -269,8 +269,8 @@
           <p>
           <ul>
             <li>Further removed a lot of cruft (MD5, RC4, SSL fallbacks, weak elliptic curves)</li>
-            <li>Requires AEADs and forward secret handshakes</li>
-            <li>Much faster handshakes, with fewer round trips</li>
+            <li class="fragment">Requires AEADs and forward secret handshakes</li>
+            <li class="fragment">Much faster handshakes, with fewer round trips</li>
           </ul>
           </p>
           <aside class="notes">
@@ -280,7 +280,7 @@
 
         <section data-timeline="tls12" data-transition="slide-in fade-out" data-timeline-range="3">
           <h2>Transport Layer Security 1.2 handshake</h2>
-          <div class="center"><img style="height: 60vh;" data-src="src/images/cloudflare-tls12-handshake.png"></div>
+          <div class="center"><img style="max-height: 60vh;" data-src="src/images/cloudflare-tls12-handshake.png"></div>
           <aside class="notes">
             2-RTT to 1-RTT
           </aside>
@@ -288,7 +288,7 @@
 
         <section data-timeline="tls13" data-transition="fade-in fade-out" data-timeline-range="3">
           <h2>Transport Layer Security 1.3 handshake</h2>
-          <div class="center"><img style="height: 60vh;" data-src="src/images/cloudflare-tls13-handshake.png"></div>
+          <div class="center"><img style="max-height: 60vh;" data-src="src/images/cloudflare-tls13-handshake.png"></div>
           <aside class="notes">
             2-RTT to 1-RTT
           </aside>
@@ -296,7 +296,7 @@
 
         <section data-timeline="tls13" data-transition="fade-in slide-out" data-timeline-range="3">
           <h2>Transport Layer Security 1.3 handshake resumption</h2>
-          <div class="center"><img style="height: 60vh;" data-src="src/images/cloudflare-tls13-handshake-0rtt.png"></div>
+          <div class="center"><img style="max-height: 60vh;" data-src="src/images/cloudflare-tls13-handshake-0rtt.png"></div>
           <aside class="notes">
             Zero roundtrips!!
           </aside>
@@ -777,7 +777,7 @@
             <li style="list-style-type: none;">
               <ul>
                 <li class="fragment" data-fragment-index="7">Protected by same-origin policy</li>
-                <li class="fragment" data-fragment-index="8">Must be predictable, stable across entire session</li>
+                <li class="fragment" data-fragment-index="8">Must be unpredictable, stable across entire session</li>
                 <li class="fragment" data-fragment-index="9">Require JavaScript to be enabled</li>
               </ul>
             </li>
@@ -811,7 +811,7 @@
 
           <p class="fragment" data-fragment-index="4">
           <img class="center" style="height: 25vh;"" data-src="src/images/samesitecookie-support.png">
-          <ul class="fragment" data-fragment-index="4">
+          <ul class="fragment" data-fragment-index="5">
             <li>Use in conjunction with other anti-CSRF methods for now</li>
           </ul>
           </p>
@@ -824,7 +824,7 @@
           <p>
           <ul>
             <li>Quite a number of attacks have come from leveraging an insecure site to attack a secure one</li>
-            <li class="fragment">Sites can set cookies on any parent domain or any subdomain</li>
+            <li class="fragment">Sites can set cookies on any parent domain</li>
           </ul>
           <a href="http://poorlycodedwebsite.pleasedontfindthis.mybosswillfireme.test.bank.com">
           <div style="display:inline-block; height: 4em; margin-left: 2em; margin-top: 1em; vertical-align: top;">
@@ -941,6 +941,7 @@
           <h2>X-XSS-Protection</h2>
 
           <aside class="notes">
+          A header that is impossible to say three times fast.
           </aside>
         </section>
 
@@ -1666,7 +1667,12 @@ GIF89a/*0;*/=0;
             <li class="fragment" data-fragment-index="5">Abuse permissions to the camera, geolocation, etc.</li>
             <li class="fragment" data-fragment-index="6">It could even deface your website!  &#x1f600;</li>
           </ul>
-          <div class="center fragment" data-fragment-index="6"><img data-src="src/images/defacement.png" style="border: solid 2px gray; max-height: 20vh; margin-top: 3vh;">
+          <div class="center fragment hideable" data-fragment-index="6"><img data-src="src/images/defacement.png" style="border: solid 2px gray; max-height: 20vh; margin-top: 3vh;"></div>
+
+          <div class="center fragment" style="background-color: #00ffff; border: solid 1vh #ff4f5e; font-size: 8em; top: -1em; position: relative;" data-fragment-index="7">
+            <span class="fragment" data-fragment-index="7">🎂</span> <span class="fragment" data-fragment-index="8">🍽</span> <span class="fragment" data-fragment-index="9">🤯</span>
+          </div>
+
           <aside class="notes">
           </aside>
         </section>
@@ -1679,9 +1685,15 @@ GIF89a/*0;*/=0;
         <mark>crossorigin</mark>=&quot;anonymous&quot;&gt;</code></pre>
 
           <ul style="margin-top: 1em;">
+            <li>Browser will check to see if the JavaScript matches cryptographic hash prior to execution</li>
             <li class="fragment">Good to have local fallback if loading fails</li>
-            <li class="fragment"><span style="font-size: 5em; vertical-align: middle;">🍩</span></li>
           </ul>
+
+          <div class="center fragment" style="font-size: 1.2em; top: -11em; position: relative;">
+            <video data-autoplay style="height: 70vh;">
+              <source data-src="src/images/birthday-cake.mp4" type="video/mp4">
+            </video>
+          </div>
 
           <aside class="notes">
             I actually wrote a whole bunch of bulletpoints about how difficult this was. Like this one (5). That's way easier than sitting through an hour of this presentation.
@@ -1700,6 +1712,10 @@ GIF89a/*0;*/=0;
               <location>Co-author of HTTP specification,<br>UC Urvine</location>
             </cite>
           </quote>
+
+          <aside class="notes">
+            Everybody knows that the Referrer header was misspelled in the original HTTP specification, a problem which we perfectly solved by blaming it on France
+          </aside>
         </section>
 
         <section data-timeline="referrerpolicy" data-timeline-range="3">
@@ -1709,9 +1725,17 @@ GIF89a/*0;*/=0;
             <li>Let's say you're on <tt>mozilla.org</tt>, and you see a piece of code like this&hellip;</li>
           </ul>
 
-          <pre class="fragment" style="font-size: 1.25em;"><code class="html" data-trim>
-<!-- load the greatest image of all time -->
-&lt;img src=&quot;https://badssl.com/image.jpg&quot;&gt;
+          <!--
+          <video>
+          <source src="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  type="video/mp4">
+          </video>
+          -->
+          <pre class="fragment" style="font-size: 1em;"><code class="html" data-trim data-noescape>
+&lt;!-- load the greatest video of all time --&gt;
+&lt;video&gt;
+  &lt;source src=&quot;<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">https://www.youtube.com/watch?v=dQw4w9WgXcQ</a>&quot;&gt;
+&lt;/video&gt;
           </code></pre>
 
           <ul class="fragment">
@@ -1719,8 +1743,8 @@ GIF89a/*0;*/=0;
           </ul>
 
           <pre class="fragment hideable" style="font-size: 1em;"><code class="http" data-trim data-noescape>
-            GET /image.jpg HTTP/1.1
-            Host: badssl.com
+            GET /watch?v=dQw4w9WgXcQ HTTP/1.1
+            Host: youtube.com
             User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
             Accept: */*
             Connection: keep-alive
@@ -1728,8 +1752,8 @@ GIF89a/*0;*/=0;
           </code></pre>
 
           <pre class="fragment hideable" style="font-size: 1em;"><code class="http" data-trim data-noescape>
-            GET /image.jpg HTTP/1.1
-            Host: badssl.com
+            GET /watch?v=dQw4w9WgXcQ HTTP/1.1
+            Host: youtube.com
             User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
             Accept: */*
             Connection: keep-alive
@@ -1737,8 +1761,8 @@ GIF89a/*0;*/=0;
           </code></pre>
 
           <pre class="fragment hideable" style="font-size: 1em;"><code class="http" data-trim data-noescape>
-            GET /image.jpg HTTP/1.1
-            Host: badssl.com
+            GET /watch?v=dQw4w9WgXcQ HTTP/1.1
+            Host: youtube.com
             User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
             Accept: */*
             Connection: keep-alive
@@ -1746,8 +1770,8 @@ GIF89a/*0;*/=0;
           </code></pre>
 
           <pre class="fragment hideable" style="font-size: 1em;"><code class="http" data-trim data-noescape>
-            GET /image.jpg HTTP/1.1
-            Host: badssl.com
+            GET /watch?v=dQw4w9WgXcQ HTTP/1.1
+            Host: youtube.com
             User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
             Accept: */*
             Connection: keep-alive
@@ -1755,8 +1779,8 @@ GIF89a/*0;*/=0;
           </code></pre>
 
           <pre class="fragment hideable" style="font-size: 1em;"><code class="http" data-trim data-noescape>
-            GET /image.jpg HTTP/1.1
-            Host: badssl.com
+            GET /watch?v=dQw4w9WgXcQ HTTP/1.1
+            Host: youtube.com
             User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
             Accept: */*
             Connection: keep-alive
@@ -1841,7 +1865,7 @@ GIF89a/*0;*/=0;
             <li>Considerable control over the <tt>Referrer</tt> header</li>
             <li class="fragment">Huge win for user privacy</li>
             <li class="fragment">Helps prevent accidental information disclosures</li>
-            <li class="fragment">Still lets you collect full referrer data for your own domains, if you want</li>
+            <li class="fragment">Still lets you collect full referrer data for your own domains</li>
           </ul>
 
           <aside class="notes">
@@ -1964,9 +1988,9 @@ GIF89a/*0;*/=0;
           <img class="plain center" style="max-height: 40vh;" data-src="src/images/observatory-cli.png">
           <ul style="margin-top: 5vh;">
             <li>Command-line clients, Python libraries</li>
-            <li>Free public API, easy to setup images for internal use</li>
-            <li>Integration with 3rd parties, such as SSL Labs</li>
-            <li>Please try it out at: <a href="https://observatory.mozilla.org">observatory.mozilla.org</a>
+            <li class="fragment">Free public API, preconfigured system images for internal use</li>
+            <li class="fragment">Integration with 3rd parties, such as SSL Labs</li>
+            <li class="fragment">Please try it out at: <a href="https://observatory.mozilla.org">observatory.mozilla.org</a>
           </ul>
           <aside class="notes">
             This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser
