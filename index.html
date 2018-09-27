@@ -1797,7 +1797,11 @@ GIF89a/*0;*/=0;
             <li>Even worse, if you're at an unlisted page such as <br><tt>bank.com/pwreset-cd39-e5a5-a891-b3f4</tt>,<br>you might have something like this:</li>
           </ul>
 
-          <pre style="font-size: 1.2em; z-index: 0;"><code class="http" data-trim data-noescape>
+          <pre style="font-size: 1.2em;"><code class="html" data-trim data-noescape>
+          &lt;img src=&quot;https://some-cdn.com/bank/logo.jpg&quot;&gt;
+          </code></pre>
+
+          <pre class="fragment" style="font-size: 1.2em; z-index: 0;"><code class="http" data-trim data-noescape>
             GET /bank/logo.jpg HTTP/1.1
             Host: some-cdn.com
             User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
@@ -1813,6 +1817,7 @@ GIF89a/*0;*/=0;
           </div>
 
           <aside class="notes">
+          Common pattern for password reset pages or email management pages.
           </aside>
         </section>
 
@@ -1853,10 +1858,10 @@ GIF89a/*0;*/=0;
           </aside>
         </section>
 
-        <section data-timeline="referrerpolicy" data-timeline-range="3">
+        <section data-timeline="referrerpolicy" data-timeline-range="3" data-autoplay>
           <h2>Referrer Policy</h2>
           <div class="center">
-            <video data-autoplay style="height: 40vh;">
+            <video muted style="height: 40vh;">
               <source data-src="src/images/cat-privacy.mp4" type="video/mp4">
             </video>
           </div>
@@ -1874,7 +1879,7 @@ GIF89a/*0;*/=0;
 
         <section class="center" data-background-image="src/images/bg-cookies.png">
           <quote>
-            <p style="display: inline-block; margin: 0 0 .25em 1em; text-indent: 0;">I must have passed out.<br><span style="font-size: 1.2em;">Where am I?</span><br><span style="font-size: 1.4em;">Who is this <strong class="yellow">weird lady</strong>?</span></p>
+            <p style="display: inline-block; margin: 0 0 .25em 1em; text-indent: 0;">I must have passed out.<br><span style="font-size: 1.2em;">Where am I?</span><br><span style="font-size: 1.4em;">Who is this <strong class="yellow">strange lady</strong>?</span></p>
             </p>
             <cite style="margin-left: 1.4em;">
               <author>You</author>
@@ -1903,9 +1908,9 @@ GIF89a/*0;*/=0;
           <img class="center plain" style="max-height: 45vh;" data-src="src/images/server-side-tls-guidelines.png">
           <p>
           <ul>
+            <li>Most frequently referenced TLS configurations</li>
             <li>Made it easy to get that <strong class="red">A+</strong> grade</li>
             <li>Configuration tool to generate easy copy-and-paste configurations</li>
-            <li>Most frequently referenced TLS configurations</li>
           </ul>
           </p>
           <aside class="notes">
@@ -2174,6 +2179,15 @@ GIF89a/*0;*/=0;
         // next, we detect if the slide has data-auto-fragment enabled and if so we advance to the first fragment
         if (e.currentSlide.hasAttribute('data-auto-fragment')) {
           Reveal.setState({indexf: 0});
+        }
+
+        // if we have a data-autoplay value, let's get the current slide and play the video on it
+        if (e.currentSlide.hasAttribute('data-autoplay')) {
+          try {
+            e.currentSlide.getElementsByTagName('video')[0].play();
+          } catch(err) {
+            console.log('Couldn\'t autoplay video');
+          }
         }
 
         console.log('the slide changed', e, 'and here is data-timeline', e.currentSlide.getAttribute('data-timeline'));
