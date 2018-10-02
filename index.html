@@ -35,8 +35,9 @@
           <div class="h6" style="margin-bottom: 4vh;">2018.10.04</div>
           <div class="h6">April King</div>
           <div class="h6">Staff Security Engineer</div>
+          <div class="h6">Mozilla</div>
 
-          <aside class="notes">The web has been around for a while, but don't worry, I'm going to teach you everything.</aside>
+          <aside class="notes">The web has been around for a while, but don't worry...</aside>
         </section>
 
         <section data-background-image="src/images/bg-blue-slash2.svg" data-background-position="left" data-background-size="auto 100%">
@@ -44,7 +45,7 @@
             <name>Agenda</name>
             <items>
               <ol>
-                <li>Teaching you everything
+                <li style="margin-bottom: 5vh;">Teaching you everything
                   <ul>
                     <li class="fragment">I'm a liar</li>
                     <li class="fragment">Start in 1994</li>
@@ -55,33 +56,28 @@
               </ol>
             </items>
           </agenda>
+          <aside class="notes">... because I'm going to teach you everything, or at least I would if I wasn't a total liar. Not enough time, backend security, blah blah...</aside>
         </section>
 
-        <section data-timeline="sop" data-timeline-height="3" data-timeline-range="3">
-          <h2>Same-origin Policy</h2>
-          <ul style="font-size: 1.4em; margin-bottom: 1em;">
-            <li>Sites can <span class="fragment highlight-current-red" data-fragment-index="2">execute code</span> from any origin, but they can only directly <span class="fragment highlight-current-red" data-fragment-index="3">read content</span> from the <span class="fragment highlight-current-red" data-fragment-index="4">same-origin</span>.</li>
-          </ul>
-
-          <ul class="fragment" data-fragment-index="2" style="font-size: 1.2em; margin-left: 2.5em;">
-            <li class="fragment highlight-current-red" data-fragment-index="2">Running JavaScript, rendering images and fonts, loading a frame</li>
-          </ul>
-
-          <ul class="fragment" data-fragment-index="3" style="font-size: 1.2em; margin-left: 2.5em;">         
-            <li class="fragment highlight-current-red" data-fragment-index="3">Reading the content of what they loaded</li>
-          </ul>
-
-          <div class="fragment center" style="font-size: 2em; margin-bottom: 2em; margin-top: 2em;" data-fragment-index="4">
-            <span class="fragment highlight-current-red" data-fragment-index="5" style="border: solid 1px black; margin-right: .3em; padding: .25em;">https://</span>
-            <span class="fragment highlight-current-red" data-fragment-index="6" style="border: solid 1px black; margin-right: .3em; padding: .25em;">www.mozilla.org</span>
-            <span class="fragment highlight-current-red" data-fragment-index="7" style="border: solid 1px black; margin-right: .3em; padding: .25em;">:443</span>
-          </div>
-
-          <div class="center fragment" style="font-size: 1.2em; top: -12em; position: relative;">
-            <video muted data-autoplay style="height: 40vh;">
-              <source data-src="src/images/pat-myself-back.mp4" type="video/mp4">
-            </video>
-          </div>
+        <section data-background-image="src/images/bg-blue-slash2.svg" data-background-position="left" data-background-size="auto 100%">
+          <agenda style="margin-top: 15vh">
+            <name style="text-align: center;">The Real<br>Agenda</name>
+            <items>
+              <ol>
+                <li>Connection security (SSL/TLS)
+                  <ul><li style="list-style-type: none; margin-left: -1em;">&hellip; and how we made it &ldquo;easy&rdquo;</li></ul>
+                </li>
+                <li>Same-origin policy</li>
+                <li>Cookies &amp; cross-site request forgeries (CSRF)</li>
+                <li>Framing &amp; clickjacking</li>
+                <li>Abusing content sniffing</li>
+                <li>Cross-site scripting &amp; Content Security Policy</li>
+                <li>You can't trust other people</li>
+                <li>Tools to make everything all better</li>
+              </ol>
+            </items>
+          </agenda>
+          <aside class="notes">... because I'm going to teach you everything, or at least I would if I wasn't a total liar. Not enough time, backend security, blah blah...</aside>
         </section>
 
         <section class="center" data-background-image="src/images/bg-what-kinda-clown.png">
@@ -340,7 +336,7 @@
         </section>
 
         <section data-timeline="sni">
-          <h2>Subject Name Indication</h2>
+          <h2>Server Name Indication</h2>
           <div class="center"><img style="height: 40vh;" data-src="src/images/sni.png"></div>
           <p>
           <ul>
@@ -500,13 +496,13 @@
         <section data-timeline="hpkp" data-timeline-range="3">
           <h2>HTTP Public Key Pinning (HPKP)</h2>
           <div class="center">
-          <video muted class="center fragment" data-autoplay data-fragment-index="4" style="height: 40vh;">
+          <video muted class="center fragment" data-autoplay data-fragment-index="3" style="height: 40vh;">
             <source data-src="src/images/pin-tail-donkey.mp4" type="video/mp4">
           </video>
           </div>
           <p>
           <ul>
-            <li>Certificate authorities sometimes issue certs that they shouldn't</li>
+            <li>Certificate authorities sometimes issue certificates that they shouldn't</li>
             <li class="fragment" data-fragment-index="1">A way to pin sites to specific root certificate, intermediate certificate, or public keys
               <ul>
                 <li class="fragment" data-fragment-index="2">Maybe 100 sites will use this</li>
@@ -526,11 +522,11 @@
           <ul>
             <li>Append-only lists of certificates issued by certificate authorities
               <ul>
-                <li class="fragment">Check for issued certs that you didn't request</li>
-                <li class="fragment">Check to see if certs encountered in the wild aren't in the logs</li>
+                <li class="fragment">Check for issued certificates that you didn't request</li>
+                <li class="fragment">Check to see if certificates encountered in the wild aren't in the logs</li>
               </ul>
             </li>
-            <li class="fragment">Required for some types of certs already, eventually all certs</li>
+            <li class="fragment">Required for some types of certificates already, eventually all certicates</li>
           </ul>
           </p>
           <aside class="notes">
@@ -603,15 +599,59 @@
           </aside>
         </section>
 
+        <section class="center" data-background-image="src/images/bg-cookies.png">
+          <quote>
+            <p>
+              &ldquo;Two possibilities exist: either we are <strong class="yellow">alone</strong> in the Universe or we are not. Both are equally terrifying.&rdquo;
+            </p>
+            <cite>
+              <author>Arthur C. Clarke</author>
+              <location>Author (deceased)</location>
+            </cite>
+          <aside class="notes">Now the same-origin policy is about how all websites are lonely, but they're lonely in a good way. A way that protects it.</aside>
+          </quote>
+        </section>
 
-        <section class="center" data-background-image="src/images/bg-title-slide.png">
+        <section data-timeline="sop" data-timeline-height="3" data-timeline-range="3">
+          <h2>Same-origin Policy</h2>
+          <ul style="font-size: 1.4em; margin-bottom: 1em;">
+            <li>Sites can <span class="fragment highlight-current-red" data-fragment-index="2">execute code</span> from any origin, but they can only directly <span class="fragment highlight-current-red" data-fragment-index="3">read content</span> from the <span class="fragment highlight-current-red" data-fragment-index="4">same-origin</span>.</li>
+          </ul>
+
+          <ul class="fragment" data-fragment-index="2" style="font-size: 1.2em; margin-left: 2.5em;">
+            <li class="fragment highlight-current-red" data-fragment-index="2">Running JavaScript, rendering images and fonts, loading a frame</li>
+          </ul>
+
+          <ul class="fragment" data-fragment-index="3" style="font-size: 1.2em; margin-left: 2.5em;">         
+            <li class="fragment highlight-current-red" data-fragment-index="3">Reading the content of what they loaded</li>
+          </ul>
+
+          <div class="fragment center" style="font-size: 2em; margin-bottom: 1em; margin-top: 2em;" data-fragment-index="4">
+            <span class="fragment highlight-current-red" data-fragment-index="5" style="border: solid 1px black; margin-right: .3em; padding: .25em;">https://</span>
+            <span class="fragment highlight-current-red" data-fragment-index="6" style="border: solid 1px black; margin-right: .3em; padding: .25em;">www.mozilla.org</span>
+            <span class="fragment highlight-current-red" data-fragment-index="7" style="border: solid 1px black; margin-right: .3em; padding: .25em;">:443</span>
+          </div>
+
+          <ul class="fragment" data-fragment-index="8" style="font-size: 1.2em; margin-left: 2.5em;">         
+            <li class="fragment highlight-current-red" data-fragment-index="8">Read the content of the same-origin, <span class="red">but nowhere else</span></li>
+          </ul>
+
+          <div class="center fragment" style="font-size: 1.2em; top: -12em; position: relative;">
+            <video muted data-autoplay style="height: 40vh;">
+              <source data-src="src/images/pat-myself-back.mp4" type="video/mp4">
+            </video>
+          </div>
+        </section>
+
+<!--         <section class="center" data-background-image="src/images/bg-title-slide.png">
           <div class="center"><span class="h2 white">This is a great time to take a <strong class="yellow">&ldquo;short bathroom break&rdquo;</strong>.</span></div>
-        </section>        
+          <aside class="notes">Now this is a great time to take a short bathroom break and flee the room, because we're about to talk about cookies</aside>
+        </section> -->
 
         <section class="center" data-background-image="src/images/bg-cookies.png">
           <quote>
             <p>
-              &ldquo;Early bird gets the worm. But <strong class="yellow">cookie</strong> taste better than worm. So me sleep in.&rdquo;
+              &ldquo;Early bird gets the worm. But <strong class="yellow">cookie</strong> taste better than worm, so me sleep in.&rdquo;
             </p>
             <cite>
               <author>Cookie Monster</author>
@@ -623,6 +663,7 @@
         <section class="center" data-background-image="src/images/cookies.jpg">
           <div class="center" style="color: white; font-size: 60vh; margin-top: -3vh; text-shadow: 0 0 1vh black;">?</div>
           <aside class="notes">
+            But what are cookies? Stated simply, cookies are a way for browsers and servers to maintain state by sending a little piece of data along with every HTTP request. Without cookies, it would be very difficult to build sites that rely on tying requests together, such as those with shopping carts.
           </aside>
         </section>
 
@@ -630,21 +671,21 @@
           <h2>Secure Cookies</h2>
           <pre style="font-size: 1em;"><code class="http" data-trim data-noescape>Set-Cookie: SESSIONID=38afesc00c1e7a8; Domain=e-cookies.com</code></pre>
           <ul>
-            <li class="fragment" data-fragment-index="2">Browser sends the <tt>SESSIONID</tt> cookie every time you visit e-cookies.com, even over <strong>HTTP</strong></li>
+            <li>Browser sends the <tt>SESSIONID</tt> cookie every time you visit e-cookies.com, even over <strong>HTTP</strong></li>
           </ul>
           <div class="center">
-            <video muted class="plain fragment" loop data-autoplay style="height: 20vh;" data-fragment-index="3">
+            <video muted class="plain fragment" loop data-autoplay style="height: 20vh;" data-fragment-index="1">
               <source data-src="src/images/badssl-cursor.mp4" type="video/mp4">
             </video>
           </div>
           <ul>
-            <li class="fragment" data-fragment-index="3">This is very bad</li>
+            <li class="fragment" data-fragment-index="1">This is very bad</li>
           </ul>
-          <pre style="font-size: 1em;" class="fragment" data-fragment-index="4"><code class="http" data-trim data-noescape>Set-Cookie: SESSIONID=38afesc00c1e7a8; Domain=e-cookies.com; <mark>Secure</mark></code></pre>
+          <pre style="font-size: 1em;" class="fragment" data-fragment-index="2"><code class="http" data-trim data-noescape>Set-Cookie: SESSIONID=38afesc00c1e7a8; Domain=e-cookies.com; <mark>Secure</mark></code></pre>
           <ul>
-            <li class="fragment" data-fragment-index="4">The <tt>Secure</tt> flag tells browsers to not do the bad thing</li>
-            <li class="fragment" data-fragment-index="5">HTTP Strict Transport Security (HSTS) helps mitigate</li>
-            <li class="fragment" data-fragment-index="6">You should still use HTTPS and <tt>Secure</tt> for all cookies</li>
+            <li class="fragment" data-fragment-index="2">The <tt>Secure</tt> flag tells browsers to not do the bad thing</li>
+            <li class="fragment" data-fragment-index="3">HTTP Strict Transport Security (HSTS) helps mitigate</li>
+            <li class="fragment" data-fragment-index="4">You should still use HTTPS and <tt>Secure</tt> for all cookies</li>
           </ul>
           <aside class="notes">
           </aside>
@@ -762,15 +803,14 @@
           </p>
           <!-- <input type="hidden" name="anticsrftoken" value="XQGwbxfChfoEv4nFJQEHVeDsd" /> -->
 
-          <pre class="fragment" style="font-size: .9em;" data-fragment-index="1"><code class="html" data-trim>&lt;input type=&quot;hidden&quot; name=&quot;anticsrftoken&quot; value=&quot;XQGwbxfChfoEv4nFJQEHVeDsd&quot;&gt;</code></pre>
+          <pre style="font-size: .9em;"><code class="html" data-trim>&lt;input type=&quot;hidden&quot; name=&quot;anticsrftoken&quot; value=&quot;XQGwbxfChfoEv4nFJQEHVeDsd&quot;&gt;</code></pre>
 
           <p>
           <ul>
             <li style="list-style-type: none;">
               <ul>
-                <li class="fragment" data-fragment-index="2">They need to be unique and unpredictable</li>
-                <li class="fragment" data-fragment-index="3">These are complicated and messy</li>
-                <li class="fragment" data-fragment-index="4">Can sometimes cause problems with multiple tabs and erratic user flows</li>
+                <li class="fragment" data-fragment-index="1">They need to be unique and unpredictable, only work with <code>POST</code> requests</li>
+                <li class="fragment" data-fragment-index="2">Can cause problems with multiple tabs and erratic user flows</li>
               </ul>
             </li>
           </ul>
@@ -778,28 +818,27 @@
 
           <p>
           <ul>
-            <li class="fragment" data-fragment-index="5">Cookie-to-header tokens</li>
+            <li class="fragment" data-fragment-index="3">Cookie-to-header tokens</li>
           </ul>
           </p>
           <!-- Set-Cookie: anti-csrf-token=XQGwbxfChfoEv4nFJQEHVeDsd -->
 
-          <pre class="fragment" style="font-size: .9em;" data-fragment-index="6"><code class="http" data-trim data-noescape>Set-Cookie: anti-csrf-token=XQGwbxfChfoEv4nFJQEHVeDsd<s>; HttpOnly</s></code></pre>
-          <pre class="fragment" style="font-size: .9em;" data-fragment-index="7"><code class="http" data-trim>X-Anti-CSRF-Token: XQGwbxfChfoEv4nFJQEHVesd</code></pre>
+          <pre class="fragment" style="font-size: .9em;" data-fragment-index="3"><code class="http" data-trim data-noescape>Set-Cookie: anti-csrf-token=XQGwbxfChfoEv4nFJQEHVeDsd<s>; HttpOnly</s></code></pre>
+          <pre class="fragment" style="font-size: .9em;" data-fragment-index="4"><code class="http" data-trim>X-Anti-CSRF-Token: XQGwbxfChfoEv4nFJQEHVesd</code></pre>
 
           <p>
           <ul>
             <li style="list-style-type: none;">
               <ul>
-                <li class="fragment" data-fragment-index="7">Protected by same-origin policy</li>
-                <li class="fragment" data-fragment-index="8">Must be unpredictable, stable across entire session</li>
-                <li class="fragment" data-fragment-index="9">Require JavaScript to be enabled</li>
+                <li class="fragment" data-fragment-index="5">Protected by same-origin policy</li>
+                <li class="fragment" data-fragment-index="6">Must be unpredictable, stable across entire session</li>
+                <li class="fragment" data-fragment-index="7">Only works if JavaScript is enabled</li>
               </ul>
             </li>
           </ul>
           </p>
 
           <aside class="notes">
-            Here is what I know. There are three things people want in life. Pictures of puppies. Pictures of kitties. And pictures of puppies playing with kitties.
           </aside>
         </section>
 
@@ -815,9 +854,12 @@
           <ul>
             <li class="fragment" data-fragment-index="2"><tt>SameSite</tt> tells browsers to only ever send the cookie when you're on a site</li>
             <li class="fragment" data-fragment-index="3"><tt>SameSite=Strict</tt> (default) won't send the cookies even on navigation</li>
+          </ul>
+          <pre class="fragment" style="font-size: .9em;" data-fragment-index="3"><code class="html" data-trim>&lt;a href=&quot;https://bank.com/api/transfer?to=719091707&amp;amount=5000&quot;&gt;click me&lt;/a&gt;</code></pre>
+          <ul>
             <li class="fragment" data-fragment-index="4"><tt>SameSite=Lax</tt> will let browsers send cookies on top-level navigations
               <ul>
-                <li>Protects unsafe methods (like POST)</li>
+                <li>Protects unsafe methods (like <code>POST</code>)</li>
               </ul>
             </li>
           </ul>
@@ -835,7 +877,6 @@
 
         <section data-timeline="cookieprefixes" data-timeline-range="3">
           <h2>Cookie Prefixes</h2>
-          <p>
           <ul>
             <li>Quite a number of attacks have come from leveraging an insecure site to attack a secure one</li>
             <li class="fragment">Sites can set cookies on any parent domain</li>
@@ -844,26 +885,27 @@
           <div style="display:inline-block; height: 4em; margin-left: 2em; margin-top: 1em; vertical-align: top;">
             <span class="fragment">http://poorlycodedwebsite</span>
           </div>
-          <div style="display: inline-block; margin-top: 2em; margin-bottom: 1em;6">
+          <div style="display: inline-block; margin-top: 2em; margin-bottom: 1em;">
             <span class="fragment">.pleasedontfindthis</span><br>
             <span class="fragment">.mybosswillfireme</span><br>
             <span class="fragment">.test</span><br>
             <span class="fragment">.bank.com</span>
           </div>
           </a>
-          <pre class="fragment" style="font-size: .9em;"><code class="http" data-trim data-noescape>Set-Cookie: nickname=&lt;script&gt;doEvil()&lt;/script&gt;; <mark>Domain=bank.com</mark></code></pre>
+          <pre class="fragment" style="font-size: .9em;"><code class="http" data-trim data-noescape>Set-Cookie: nickname=I'm a big poopy head; <mark>Domain=bank.com</mark></code></pre>
 
           <aside class="notes">
+            And this is particularly a problem with cookies, because subdomains are allowed to set cookies on any parent domain.
           </aside>
         </section>
 
-        <section data-timeline="cookieprefixes" data-timeline-range="3">
+        <section data-timeline="cookieprefixes" data-timeline-range="3" data-auto-fragment>
           <h2>Cookie Prefixes</h2>
           <p style="margin-top: 1em;">
             <pre style="font-size: .9em; line-height: 1.5em;" class="fragment" data-fragment-index="1"><code class="http" data-trim data-noescape>Set-Cookie: <mark>__Secure-</mark>nickname=April; Secure; Domain=bank.com</code></pre>
 
             <ul style="margin-left: 4em;">
-              <li class="fragment" data-fragment-index="1">Prevent cookie from being overwritten or set by insecure origins</li>
+              <li class="fragment" data-fragment-index="1">Prevent cookie from being set or overwritten by <strong>HTTP</strong> origins</li>
             </ul>
           </p>
 
@@ -871,12 +913,12 @@
             <pre style="font-size: .9em; line-height: 1.5em;" class="fragment" data-fragment-index="2"><code class="http" data-trim data-noescape>Set-Cookie: <mark>__Host-</mark>nickname=April; Secure; Domain=bank.com; Path=/</code></pre>
 
             <ul style="margin-left: 4em;">
-              <li class="fragment" data-fragment-index="2">Prevent cookie from being overwritten or set by either insecure origins or other systems.</li>
+              <li class="fragment" data-fragment-index="2">Prevent cookie from being set or overwritten by either <strong>HTTP</strong> origins or other systems.</li>
             </ul>
           </p>
 
           <aside class="notes">
-            It's a simple as renaming you cookie, and as we all know, naming things is the easiest thing in computer science.
+            It's a simple as renaming your cookie, and as we all know, there are fewer tasks easier than naming things.
           </aside>
         </section>
 
@@ -890,6 +932,7 @@
               <location>A History of Mathematical Notations (1928)</location>
             </cite>
           </quote>
+          <aside class="notes">In 2009</aside>
         </section>
 
         <section data-timeline="xxssp,xfo,xcto"  data-timeline-range="3" data-timeline-height="3" data-auto-fragment>
@@ -912,7 +955,7 @@
             <ul>
               <li style="padding-top: .5em;"><tt>X-Frame-Options: DENY</tt></li>
               <li style="padding-top: .5em;"><tt>X-Frame-Options: SAMEORIGIN</tt></li>
-              <li><tt>X-Frame-Options: ALLOW-FROM https://mozilla.org/</tt><sup style="font-size: 1.5em;">†</sup></li>
+              <li><s><tt>X-Frame-Options: ALLOW-FROM https://mozilla.org/</tt><sup style="font-size: 1.5em;">†</sup></s></li>
             </ul>
             </li>
           </ul>
@@ -935,10 +978,13 @@
           <iframe id="please-click-me" src="src/html/please-click-me.html" style="height: 70vh; width: 100%"></iframe>
 
           <aside class="notes">
+          Now obviously I would never click this, because I know it's a trick. But on the other hand, I did spend a lot of time on this cursor and I could use a free kitten.
           </aside>
         </section>
 
-        <section data-background-color="black" data-transition-speed="fast"></section>
+        <section data-background-color="black" data-transition-speed="fast">
+          <aside class="notes">OH MY GOSH WHAT HAVE I DONE. Wait, don't worry, I have a backup copy.</aside>
+        </section>
 
         <section data-timeline="xfo" data-timeline-range="3" data-timeline-height="3">
           <h2>X-Frame-Options</h2>
@@ -949,6 +995,82 @@
             <li>Can still use if you have old clients and mostly need <tt>DENY</tt></li>
           </ul>
           </p>
+        </section>
+
+        <section data-timeline="xcto" data-timeline-range="3" data-timeline-height="3" data-auto-fragment>
+          <h2>X-Content-Type-Options</h2>
+          <p>
+          <ul>
+            <li class="fragment" data-fragment-index="1">Protects against MIME type confusion attacks</li>
+          </ul>
+          </p>
+          <div class="center fragment hideable" data-fragment-index="1">
+            <video muted data-autoplay style="height: 40vh;">
+              <source data-src="src/images/mime-attacks.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <pre class="fragment" data-fragment-index="2" style="font-size: .9em;"><code class="html" data-trim>
+GIF89a/*0;*/=0;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;script&gt;doEvil();&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </code></pre>
+
+          <!--
+GIF89a/*0;*/=0;
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>doEvil();</script>
+  </body>
+</html>
+          -->
+          <pre class="fragment" data-fragment-index="3" style="font-size: 1.1em; margin-top: 2em;" data-fragment-index="3"><code class="http" data-trim data-noescape>X-Content-Type-Options: nosniff</code></pre>
+
+          <ul>
+            <li class="fragment" data-fragment-index="3">Tells browsers to disable content sniffing</li>
+          </ul>  
+
+          <aside class="notes">
+            MIME type confusion attacks are where your browser detects a piece of content as something other than was intended. For example, an image upload site might see an image as a GIF because of its image headers, but the browser detected it as an HTML document, because it had html tags and what not. 
+          </aside>
+        </section>
+
+        <section data-timeline="xcto" data-timeline-range="3" data-timeline-height="3">
+          <h2>X-Content-Type-Options</h2>
+
+          <ul>
+            <li>Helps stop attacks like Spectre and Meltdown</li>
+          </ul>
+
+          <pre class="fragment" style="font-size: 1.1em;" data-fragment-index="1"><code class="html" data-trim>&lt;img src=&quot;https://bank.com/api/getBalance&quot;&gt;</code></pre>
+          <pre class="fragment" style="font-size: 1.1em;" data-fragment-index="2"><code data-trim>
+          {
+            "accountNumber": 719091707,
+            "balance": 5000
+          }</code></pre>
+
+          <p style="margin-top: 2em;">
+            <pre class="fragment" data-fragment-index="3" style="font-size: 1.1em;" data-fragment-index="3"><code class="http" data-trim data-noescape>X-Content-Type-Options: nosniff</code></pre>
+            <ul>
+              <li class="fragment" data-fragment-index="4">Basically no downside, help enforce the proper behavior</li>
+            </ul>
+          </p>
+
+          <aside class="notes">
+            Recent bugs in CPUs have shown that under certain circumstances, Javascript that is running might be able to read arbitrary content from a browser's memory. And this memory might include data from other websites, breaking the same origin policy. Now browsers have taken many steps to prevent these attacks, one of which is by isolating each website into its own individual sandboxes. But REMEMBER that the same-origin policy allows the execution of code from other origins.<br><br>
+            So while this image wouldn't be rendered, and the same-origin policy would prevent this JSON from being read, it could still enter that sandbox's memory.
+          </aside>
         </section>
 
         <section data-timeline="xxssp" data-timeline-range="3" data-timeline-height="3">
@@ -1032,8 +1154,8 @@
           <h2>X-XSS-Protection</h2>
           <p>
           <ul>
-            <li>Cross-site scripting attacks are the most common attack</li>
-            <li>Can be extremely damaging</li>
+            <li>Cross-site scripting attacks are extremely attack</li>
+            <li>Have potential to be quite damaging</li>
           </ul>
           </p>
           <p>
@@ -1049,81 +1171,6 @@
           </aside>
         </section>
 
-        <section data-timeline="xcto" data-timeline-range="3" data-timeline-height="3" data-auto-fragment>
-          <h2>X-Content-Type-Options</h2>
-          <p>
-          <ul>
-            <li class="fragment" data-fragment-index="1">Protects against MIME type confusion attacks</li>
-          </ul>
-          </p>
-          <div class="center fragment hideable" data-fragment-index="1">
-            <video muted data-autoplay style="height: 40vh;">
-              <source data-src="src/images/mime-attacks.mp4" type="video/mp4">
-            </video>
-          </div>
-
-          <pre class="fragment" data-fragment-index="2" style="font-size: .9em;"><code class="html" data-trim>
-GIF89a/*0;*/=0;
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-  &lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;script&gt;doEvil();&lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-          </code></pre>
-
-          <!--
-GIF89a/*0;*/=0;
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <script>doEvil();</script>
-  </body>
-</html>
-          -->
-          <pre class="fragment" data-fragment-index="3" style="font-size: 1.1em; margin-top: 2em;" data-fragment-index="3"><code class="http" data-trim data-noescape>X-Content-Type-Options: nosniff</code></pre>
-
-          <ul>
-            <li class="fragment" data-fragment-index="3">Tells browsers to disable content sniffing</li>
-          </ul>  
-
-          <aside class="notes">
-            MIME type confusion attacks are where your browser detects a piece of content as something other than was intended. For example, an image upload site might see an image as a GIF because of its image headers, but the browser detected it as an HTML document, because it had html tags and what not. 
-          </aside>
-        </section>
-
-        <section data-timeline="xcto" data-timeline-range="3" data-timeline-height="3" data-auto-fragment>
-          <h2>X-Content-Type-Options</h2>
-
-          <ul>
-            <li>Helps Site Isolation stop attacks like Spectre and Meltdown</li>
-          </ul>
-
-          <pre class="fragment" style="font-size: 1.1em;" data-fragment-index="1"><code class="html" data-trim>&lt;img src=&quot;https://bank.com/api/getBalance&quot;&gt;</code></pre>
-          <pre class="fragment" style="font-size: 1.1em;" data-fragment-index="2"><code data-trim>
-          {
-            "accountNumber": 719091707,
-            "balance": 5000
-          }</code></pre>
-
-          <p style="margin-top: 2em;">
-            <pre class="fragment" data-fragment-index="3" style="font-size: 1.1em;" data-fragment-index="3"><code class="http" data-trim data-noescape>X-Content-Type-Options: nosniff</code></pre>
-            <ul>
-              <li class="fragment" data-fragment-index="4">Basically no downside, help enforce the proper behavior</li>
-            </ul>
-          </p>
-
-          <aside class="notes">
-            MIME type confusion attacks are where your browser detects a piece of content as something other than was intended. For example, an image upload site might see an image as a JPEG because of its image headers, but the browser detected it as an HTML document, because it had html tags and what not. 
-          </aside>
-        </section>
-
         <section class="center" data-background-image="src/images/bg-cookies.png">
           <quote>
             <p>
@@ -1134,6 +1181,7 @@ GIF89a/*0;*/=0;
               <location><em>Is Anybody Listening?</em><br>Fortune (1950)</location>
             </cite>
           </quote>
+          <aside class="notes">The underlying issue with XSS's is that the website is communicating one thing, but the browser thinks it said another.</aside>
         </section>
 
         <section data-auto-fragment>
@@ -1153,7 +1201,7 @@ GIF89a/*0;*/=0;
               <li>Connect to this ferris wheel</li>
               <li>Execute this ghost peppers</li>
               <li>Connect to this chainsaw</li>
-            What if websites had the ability to community to browsers that they should only be doing the first few things?
+            What if websites had the ability to communicate to browsers that they should only be doing the first few things?
           </aside>
         </section>
 
@@ -1168,7 +1216,7 @@ GIF89a/*0;*/=0;
                 <li class="fragment">Where can I load content from (scripts, images, etc.)</li>
                 <li class="fragment">Who can I make XMLHttpRequest (XHR) connections to</li>
                 <li class="fragment">Who can I be framed by, and who can I frame?</li>
-                <li class="fragment">Can script mixed with content be executed?</li>
+                <li class="fragment">Can script that's been mixed with content be executed?</li>
                </ul>
              </li>
           </ul>
@@ -1203,7 +1251,7 @@ GIF89a/*0;*/=0;
               script-src 'self' https://jquery.com/3.3.1/jquery.min.js
               style-src 'self' 'unsafe-inline'
           </code></pre>
-          <ul class="fragment hideable h3" data-fragment-index="2"><li>Any source without a <tt>-src</tt> directive (e.g. audio and video) is denied access.</li></ul>
+          <ul class="fragment hideable h3" data-fragment-index="2"><li>Any source without a <tt>-src</tt> directive (e.g. audio and video) is denied access</li></ul>
 
           <pre class="fragment hideable" style="font-size: 1.2em;" data-fragment-index="3"><code class="python" data-trim data-noescape>
             Content-Security-Policy:
@@ -1455,7 +1503,7 @@ GIF89a/*0;*/=0;
           </div>
 
           <aside class="notes">
-            This is really bad and you're like nooooooooo....
+            ...and remember, this really bad so you're going to be like nooooooooo....
           </aside>
         </section>
 
@@ -1639,13 +1687,14 @@ GIF89a/*0;*/=0;
               </code></pre>
 
               <ul>
-                <li>Anything with the nonce can load, and its trust is inherited.</li>
-                <li>No need for broad sources, such as <code>https:</code></li>
+                <li>No need for broad sources or huge and complicated lists</li>
+                <li>Anything with the nonce can load, and its trust is inherited</li>
               </ul>
             </div>
           </section>
 
           <!-- EXTENDED INFORMATION -->
+<!--
           <section data-timeline="csp3" data-timeline-range="3" data-auto-fragment>
             <h2 class="fragment hideable" data-fragment-index="1">Content Security Policy</h2>
             <h2 class="fragment hideable" data-fragment-index="2">Content Security Policy</h2>
@@ -1781,7 +1830,7 @@ GIF89a/*0;*/=0;
               </ul>
             </div>
           </section>
-
+-->
           <aside class="notes">
           </aside>
         </section>
@@ -1830,8 +1879,8 @@ GIF89a/*0;*/=0;
           <h2>Subresource Integrity</h2>
           <p style="margin-top: 1em;">All you have to do is change your code to this:</p>
           <pre style="font-size: 1em"><code class="html" data-trim data-noescape>&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;
-        <mark>integrity</mark>=&quot;sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4P=&quot;
-        <mark>crossorigin</mark>=&quot;anonymous&quot;&gt;</code></pre>
+        <mark>crossorigin</mark>=&quot;anonymous&quot;&gt;
+        <mark>integrity</mark>=&quot;sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4P=&quot;</code></pre>
 
           <ul style="margin-top: 1em;">
             <li>Browser will check to see if the JavaScript matches cryptographic hash prior to execution</li>
@@ -1944,7 +1993,7 @@ GIF89a/*0;*/=0;
           <h2>Referrer Policy</h2>
 
           <ul>
-            <li>Even worse, if you're at an unlisted page such as <br><tt>bank.com/pwreset-cd39-e5a5-a891-b3f4</tt>,<br>you might have something like this:</li>
+            <li>Even worse, if you're at an unlisted page such as <br><tt>bank.com/pw-reset-cd39-e5a5-a891-b3f4</tt>,<br>you might have something like this:</li>
           </ul>
 
           <pre style="font-size: 1.2em;"><code class="html" data-trim data-noescape>
@@ -1957,7 +2006,7 @@ GIF89a/*0;*/=0;
             User-Agent: Mozilla/5.0 Gecko/20100101 Firefox/63.0
             Accept: */*
             Connection: keep-alive
-            Referer: <mark>https://bank.com/pwreset-cd39-e5a5-a891-b3f4</mark>
+            Referer: <mark>https://bank.com/pw-reset-cd39-e5a5-a891-b3f4</mark>
           </code></pre>
 
           <div class="center fragment" style="font-size: 1.2em; top: -9.25em; position: relative;">
@@ -2049,7 +2098,7 @@ GIF89a/*0;*/=0;
           <img class="center plain" style="max-height: 45vh;" data-src="src/images/very.badssl.com-ssllabs.png">
           <p>
           <ul>
-            <li>Configuring cipher suites and protocols was hard</li>
+            <li>Configuring TLS cipher suites and protocols was really hard</li>
             <li>You had no feedback if you were doing it right (or wrong)</li>
             <li class="fragment">Gave you a strict public letter grade</li>
           </ul>
@@ -2069,7 +2118,6 @@ GIF89a/*0;*/=0;
           </ul>
           </p>
           <aside class="notes">
-            This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser
           </aside>
         </section>
 
@@ -2127,6 +2175,7 @@ GIF89a/*0;*/=0;
           </aside>
         </section>
 
+        <!-- no time for this alas
         <section data-timeline="observatory" data-timeline-range="2.5">
           <h2>Mozilla Observatory (SSH)</h2>
           <img class="plain center" style="max-height: 50vh;" data-src="src/images/sshobservatory.png">
@@ -2136,9 +2185,10 @@ GIF89a/*0;*/=0;
           <aside class="notes">
           </aside>
         </section>
+        -->
 
         <section data-timeline="observatory" data-timeline-range="2.5">
-          <h2>Mozilla Observatory (the other cool stuff)</h2>
+          <h2>Mozilla Observatory <span class="red">(the other cool stuff)</span></h2>
           <img class="plain center" style="max-height: 40vh;" data-src="src/images/observatory-cli.png">
           <ul style="margin-top: 5vh;">
             <li>Command-line clients, Python libraries</li>

@@ -344,9 +344,6 @@ header span {
   font-family: "Zilla Slab", "Source Sans Pro", Helvetica, sans-serif;
   font-size: 0.85em; }
 
-.reveal agenda items ol > li {
-  margin-bottom: 5vh; }
-
 .reveal agenda items ol li ul {
   font-family: "Open Sans", "Source Sans Pro", Helvetica, sans-serif;
   font-size: 0.7em;
