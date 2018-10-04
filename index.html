@@ -56,7 +56,7 @@
               </ol>
             </items>
           </agenda>
-          <aside class="notes">... because I'm going to teach you everything, or at least I would if I wasn't a total liar. Not enough time, backend security, blah blah...</aside>
+          <aside class="notes">... because I'm going to teach you everything, or at least I would if I wasn't a total liar. Not enough time, so I'm going to focus on the security happens between a client (namely a web browser), and a backend web server. Backend security, blah blah...</aside>
         </section>
 
         <section data-background-image="src/images/bg-blue-slash2.svg" data-background-position="left" data-background-size="auto 100%">
@@ -72,12 +72,13 @@
                 <li>Framing &amp; clickjacking</li>
                 <li>Abusing content sniffing</li>
                 <li>Cross-site scripting &amp; Content Security Policy</li>
+                <li>Nobody reads these things</li>
                 <li>You can't trust other people</li>
-                <li>Tools to make everything all better</li>
+                <li>But it's going to be okay anyways</li>
               </ol>
             </items>
           </agenda>
-          <aside class="notes">... because I'm going to teach you everything, or at least I would if I wasn't a total liar. Not enough time, backend security, blah blah...</aside>
+          <aside class="notes">So we're going to cover six major categories of front-end web security, all of which are on this list that you don't need to read. And once I'm finished with that, I'm going to wrap it up by talking about how you can't trust anybody, but it's going to be okay anyways. So let's dive right in.</aside>
         </section>
 
         <section class="center" data-background-image="src/images/bg-what-kinda-clown.png">
@@ -89,16 +90,18 @@
               <author>James Mickens</author>
               <location>Associate Professor,<br>Harvard University</location>
             </cite>
+          <aside class="notes">Now when most people think about web security, they immediately jump to thinking about HTTPS. And this is for a good reason, as HTTPS and the protocol it relies upon, TLS, might possibly be the important development to come out of the web. So let's start with its story.</aside> 
           </quote>
         </section>
 
+        <!--
         <section data-timeline="ssl2" data-transition="slide-in fade-out">
           <h2>Secure Sockets Layer 2.0</h2>
           <img class="center" style="height: 45vh;" data-src="src/images/netscape.jpg">
           <p>
           <ul>
             <li>In 1995, Netscape released Netscape Navigator 1.1</li>
-            <li class="fragment">First browser with support for secure HTTP</code>
+            <li>First browser with support for secure HTTP</code>
           </ul>
           </p>
           <aside class="notes">
@@ -119,6 +122,7 @@
           <aside class="notes">
           </aside>
         </section>
+        -->
 
         <section data-timeline="ssl2">
           <h2>Secure Sockets Layer 2.0</h2>
@@ -126,12 +130,12 @@
           <p>
           <ul>
             <li>In 1995, Netscape released Netscape Navigator 1.1</li>
-            <li>First browser with support for secure HTTP</code>
-            <li><code>https://www.netscape.com/</code> 🔒</li>
+            <li class="fragment">First browser with support for secure HTTP</code>
+            <li class="fragment"><code>https://www.netscape.com/</code> 🔒</li>
           </ul>
           </p>
           <aside class="notes">
-            This was a pretty big deal, because it let you type something like this into your web browser
+            This was a pretty big deal, because it let you type something like https://www.netscape.com/ into your web browser, and you could have an secure, encrypted communications channel with a remote party. Of course, there was encryption available prior to HTTPS, but HTTPS was the first time it was truly accessible to everyone, simply by typing a simple URL into your address bar. But SSL 2.0 wasn't without its problems, as less than a year later came the release of SSL 3.0.
           </aside>
         </section>
 
@@ -146,6 +150,7 @@
           </ul>
           </p>
           <aside class="notes">
+            Golden age of the encryption
           </aside>
         </section>
 
@@ -154,7 +159,7 @@
           <div class="center"><img style="height: 40vh;" data-src="src/images/unicorn-tls10.jpg"></div>
           <p>
             <ul>
-              <li>Basically the same thing as <strong>SSL 3.0</strong></li>
+              <li>Fixed some bugs, but is the same thing as <strong>SSL 3.0</strong></li>
               <li><tt>ProtocolVersion</tt> is <strong>{ 3 , 1 }</strong></li>
               <li class="fragment" data-fragment-index="2">Netscape and Microsoft IETF standardization</li>
               <li class="fragment" data-fragment-index="3">Name changed to <u>Transport Layer Security</u> as part of negotiations</li>
@@ -167,6 +172,8 @@
           </div>
 
           <aside class="notes">
+            (cutting TLS 1.1)<br>
+            The next big update with came in 2008, with the release of TLS 1.2
           </aside>
         </section>
 
@@ -189,6 +196,7 @@
           </aside>
         </section> -->
 
+        <!-- 
         <section data-timeline="tls11">
           <h2>Transport Layer Security 1.1</h2>
           <div class="center"><img style="height: 40vh;" data-src="src/images/unicorn-tls11.jpg"></div>
@@ -202,6 +210,7 @@
             Cipher block chaining mode, later exploited in attacks such as BEAST
           </aside>
         </section>
+        -->
 
         <section data-timeline="tls12" data-timeline-range="3">
           <h2>Transport Layer Security 1.2</h2>
@@ -210,10 +219,11 @@
           <ul>
             <li>Further cleanup and bug fixes</li>
             <li class="fragment">Added a lot of flexibility via TLS Extensions</li>
-            <li class="fragment">Added support for AES (Advanced Encryption Standard) cipher and <tt><u>AEADs</u></tt></li>
+            <li class="fragment">Added support for Advanced Encryption Standard (AES) cipher and <tt><u>AEADs</u></tt></li>
           </ul>
           </p>
           <aside class="notes">
+            Now I can imagine you're thinking – April, I've been in tech since 2008 and I've never ever heard the term AEAD before?
           </aside>
         </section>
 
@@ -270,7 +280,7 @@
           <p>
           <ul>
             <li>Further removed a lot of cruft (MD5, RC4, SSL fallbacks, weak elliptic curves)</li>
-            <li class="fragment">Requires AEADs and forward secret handshakes</li>
+            <li class="fragment">Requires AEADs and more secure forms of handshakes</li>
             <li class="fragment">Much faster handshakes, with fewer round trips</li>
           </ul>
           </p>
@@ -281,7 +291,7 @@
 
         <section data-timeline="tls12" data-transition="slide-in fade-out" data-timeline-range="3">
           <h2>Transport Layer Security 1.2 handshake</h2>
-          <div class="center"><img style="max-height: 60vh;" data-src="src/images/cloudflare-tls12-handshake.png"></div>
+          <div class="center"><img style="max-height: 55vh;" data-src="src/images/cloudflare-tls12-handshake.png"></div>
           <aside class="notes">
             2-RTT to 1-RTT
           </aside>
@@ -289,7 +299,7 @@
 
         <section data-timeline="tls13" data-transition="fade-in fade-out" data-timeline-range="3">
           <h2>Transport Layer Security 1.3 handshake</h2>
-          <div class="center"><img style="max-height: 60vh;" data-src="src/images/cloudflare-tls13-handshake.png"></div>
+          <div class="center"><img style="max-height: 55vh;" data-src="src/images/cloudflare-tls13-handshake.png"></div>
           <aside class="notes">
             2-RTT to 1-RTT
           </aside>
@@ -297,7 +307,7 @@
 
         <section data-timeline="tls13" data-transition="fade-in slide-out" data-timeline-range="3">
           <h2>Transport Layer Security 1.3 handshake resumption</h2>
-          <div class="center"><img style="max-height: 60vh;" data-src="src/images/cloudflare-tls13-handshake-0rtt.png"></div>
+          <div class="center"><img style="max-height: 55vh;" data-src="src/images/cloudflare-tls13-handshake-0rtt.png"></div>
           <aside class="notes">
             Zero roundtrips!!
           </aside>
@@ -336,8 +346,8 @@
         </section>
 
         <section data-timeline="sni">
-          <h2>Server Name Indication</h2>
-          <div class="center"><img style="height: 40vh;" data-src="src/images/sni.png"></div>
+          <h2>Server Name Indication (SNI)</h2>
+          <div class="center"><img style="max-height: 40vh;" data-src="src/images/sni-trimmed.png"></div>
           <p>
           <ul>
             <li>Early versions of SSL and TLS only supported one certificate per IP address</li>
@@ -526,7 +536,7 @@
                 <li class="fragment">Check to see if certificates encountered in the wild aren't in the logs</li>
               </ul>
             </li>
-            <li class="fragment">Required for some types of certificates already, eventually all certicates</li>
+            <li class="fragment">Required for some types of certificates already, eventually all certificates</li>
           </ul>
           </p>
           <aside class="notes">
@@ -682,23 +692,25 @@
             <li class="fragment" data-fragment-index="1">This is very bad</li>
           </ul>
           <pre style="font-size: 1em;" class="fragment" data-fragment-index="2"><code class="http" data-trim data-noescape>Set-Cookie: SESSIONID=38afesc00c1e7a8; Domain=e-cookies.com; <mark>Secure</mark></code></pre>
-          <ul>
             <li class="fragment" data-fragment-index="2">The <tt>Secure</tt> flag tells browsers to not do the bad thing</li>
+            <li class="fragment" data-fragment-index="3">Set on every cookie, as long as you support HTTPS (which you should)</li>
+            <!--
             <li class="fragment" data-fragment-index="3">HTTP Strict Transport Security (HSTS) helps mitigate</li>
             <li class="fragment" data-fragment-index="4">You should still use HTTPS and <tt>Secure</tt> for all cookies</li>
+            -->
           </ul>
           <aside class="notes">
           </aside>
         </section>
 
-        <section data-timeline="httponlycookies" data-auto-fragment>
+        <section data-timeline="httponlycookies" data-auto-fragment data-autoplay>
           <h2>HttpOnly Cookies</h2>
           <p>
           <ul>
             <li class="fragment" data-fragment-index="1">Browser makers understood that JavaScript came from all sorts of unscrupulous places</li>
           </ul>
           <div class="center fragment" data-fragment-index="1">
-            <video muted data-autoplay style="height: 30vh;">
+            <video muted style="height: 30vh;">
               <source data-src="src/images/head-of-digital-strategy.mp4" type="video/mp4">
             </video>
           </div>
@@ -809,7 +821,8 @@
           <ul>
             <li style="list-style-type: none;">
               <ul>
-                <li class="fragment" data-fragment-index="1">They need to be unique and unpredictable, only work with <code>POST</code> requests</li>
+                <li class="fragment" data-fragment-index="2">Protected by same-origin policy</li>
+                <li class="fragment" data-fragment-index="2">They need to be unique and unpredictable, only work with <code>POST</code> requests</li>
                 <li class="fragment" data-fragment-index="2">Can cause problems with multiple tabs and erratic user flows</li>
               </ul>
             </li>
@@ -824,15 +837,15 @@
           <!-- Set-Cookie: anti-csrf-token=XQGwbxfChfoEv4nFJQEHVeDsd -->
 
           <pre class="fragment" style="font-size: .9em;" data-fragment-index="3"><code class="http" data-trim data-noescape>Set-Cookie: anti-csrf-token=XQGwbxfChfoEv4nFJQEHVeDsd<s>; HttpOnly</s></code></pre>
-          <pre class="fragment" style="font-size: .9em;" data-fragment-index="4"><code class="http" data-trim>X-Anti-CSRF-Token: XQGwbxfChfoEv4nFJQEHVesd</code></pre>
+          <pre class="fragment" style="font-size: .9em;" data-fragment-index="3"><code class="http" data-trim>X-Anti-CSRF-Token: XQGwbxfChfoEv4nFJQEHVesd</code></pre>
 
           <p>
           <ul>
             <li style="list-style-type: none;">
               <ul>
-                <li class="fragment" data-fragment-index="5">Protected by same-origin policy</li>
-                <li class="fragment" data-fragment-index="6">Must be unpredictable, stable across entire session</li>
-                <li class="fragment" data-fragment-index="7">Only works if JavaScript is enabled</li>
+                <li class="fragment" data-fragment-index="4">Also protected by same-origin policy</li>
+                <li class="fragment" data-fragment-index="4">Must be unpredictable, stable across entire session</li>
+                <li class="fragment" data-fragment-index="4">Only works if JavaScript is enabled</li>
               </ul>
             </li>
           </ul>
@@ -842,22 +855,19 @@
           </aside>
         </section>
 
-        <section data-timeline="samesitecookies">
+        <section data-timeline="samesitecookies" data-auto-fragment>
           <h2>SameSite Cookies</h2>
-          <ul>
-            <li>Previous methods usually required complicated frameworks</li>
-          </ul>
 
           <pre class="fragment" style="font-size: .9em;" data-fragment-index="1"><code class="http" data-trim data-noescape>Set-Cookie: SESSIONID=XQGwbxfChfoEv4nFJQEHVeDsd; Secure; HttpOnly; <mark>SameSite</mark></code></pre>
 
           <p>
           <ul>
-            <li class="fragment" data-fragment-index="2"><tt>SameSite</tt> tells browsers to only ever send the cookie when you're on a site</li>
-            <li class="fragment" data-fragment-index="3"><tt>SameSite=Strict</tt> (default) won't send the cookies even on navigation</li>
+            <li class="fragment" data-fragment-index="1"><tt>SameSite</tt> tells browsers to only ever send the cookie when you're on a site</li>
+            <li class="fragment" data-fragment-index="2"><tt>SameSite=Strict</tt> (default) won't send the cookies even on navigation</li>
           </ul>
-          <pre class="fragment" style="font-size: .9em;" data-fragment-index="3"><code class="html" data-trim>&lt;a href=&quot;https://bank.com/api/transfer?to=719091707&amp;amount=5000&quot;&gt;click me&lt;/a&gt;</code></pre>
+          <pre class="fragment" style="font-size: .9em;" data-fragment-index="2"><code class="html" data-trim>&lt;a href=&quot;https://bank.com/api/transfer?to=719091707&amp;amount=5000&quot;&gt;click me&lt;/a&gt;</code></pre>
           <ul>
-            <li class="fragment" data-fragment-index="4"><tt>SameSite=Lax</tt> will let browsers send cookies on top-level navigations
+            <li class="fragment" data-fragment-index="3"><tt>SameSite=Lax</tt> will let browsers send cookies on top-level navigations
               <ul>
                 <li>Protects unsafe methods (like <code>POST</code>)</li>
               </ul>
@@ -865,13 +875,13 @@
           </ul>
           </p>
 
-          <p class="fragment" data-fragment-index="4">
-          <img class="center" style="height: 25vh;"" data-src="src/images/samesitecookie-support.png">
           <ul class="fragment" data-fragment-index="5">
-            <li>Use in conjunction with other anti-CSRF methods for now</li>
+            <img class="center" style="height: 25vh;" data-src="src/images/samesitecookie-support.png">
+            <li>Only supported by modern web browsers, so use in conjunction with other anti-CSRF methods for now</li>
           </ul>
           </p>
           <aside class="notes">
+            Previous methods usually required complicated frameworks
           </aside>
         </section>
 
@@ -1154,7 +1164,7 @@ GIF89a/*0;*/=0;
           <h2>X-XSS-Protection</h2>
           <p>
           <ul>
-            <li>Cross-site scripting attacks are extremely attack</li>
+            <li>Cross-site scripting attacks are an extremely common attack</li>
             <li>Have potential to be quite damaging</li>
           </ul>
           </p>
@@ -2216,6 +2226,7 @@ GIF89a/*0;*/=0;
           <div class="h5" style="text-decoration: underline;">Feedback</div>
           <div class="h6">april@mozilla.com</div>
           <div class="h6">irc.mozilla.org #infosec</div>
+          <div class="h6"><a href="https://twitter.com/aprilmpls">aprilmpls</a></div>
           <div class="h6">github.com/april/websec-presentation</div>
         </section>
 
@@ -2272,7 +2283,7 @@ GIF89a/*0;*/=0;
         { id: 'securecookies', content: 'Secure Cookies', start: '1997-02' },
         { id: 'tls10', content: 'TLS 1.0', title: 'Transport Layer Security 1.0', start: '1999-01' },
         { id: 'httponlycookies', content: '<tt>HttpOnly</tt> Cookies', start: '2002-09', /* end: '2007-06' */},
-        { id: 'sni', content: 'Subject Name Indicator', start: '2003-06' },
+        { id: 'sni', content: 'Server Name Indication', start: '2003-06' },
         { id: 'tls11', content: 'TLS 1.1', title: 'Transport Layer Security 1.1', start: '2006-04' },
         { id: 'tls12', content: 'TLS 1.2', title: 'Transport Layer Security 1.2', start: '2008-08' },
         { id: 'aead', content: 'AEAD (GCM)', title: 'Authenticated Encryption with Associated Data (Galois Counter Mode)', start: '2008-10' },

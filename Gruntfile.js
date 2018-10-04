@@ -1,6 +1,6 @@
 /* global module:false */
 module.exports = function(grunt) {
-  var host = '0.0.0.0';
+  var host = '127.0.0.1';
 	var port = grunt.option('port') || 8000;
 	var root = grunt.option('root') || '.';
 
